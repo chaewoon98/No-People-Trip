@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NPT</string>
+    <string name="kakao_app_key">a49d0aee89e6d3b024f30782fe45ea10</string>
+    <string name="google_app_key">AIzaSyDew9HN_8A_6EHs0faCJHsjgfkjjevjek4</string>
+    <string name="textview">TextView</string>
+    <string name="aws">http://ec2-3-34-178-3.ap-northeast-2.compute.amazonaws.com:3000</string>
+
+
+
+</resources>

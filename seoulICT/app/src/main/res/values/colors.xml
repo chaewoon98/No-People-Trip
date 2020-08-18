@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <!--최종색상표-->
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorSlateGray">#708090</color>
+    <color name="colorLightBlue">#add8e6</color>
+    <color name="colorkhaki">#f0e68c</color>
+    <color name="colorLightSlateGray">#4D778899</color>
+
+    <color name="colorGood">#67c9d2</color>
+    <color name="colorSoso">#78d0a9</color>
+    <color name="colorBad">#c82f3d</color>
+
+    <color name="colorblueligth">#badefb</color>
+
+    <!--색상표 ( 가장 밝은 것부터 어두운 것의 순서-->
+    <color name="colorBase1">#84b9e4</color>
+    <color name="colorBase2">#436B95</color>
+    <color name="colorBase3">#9babbb</color>
+    <color name="colorBase4">#68748D</color>
+
+    <color name="colorBase">#68748D</color>
+    <color name="colorBaseLight">#C1D42D</color>
+    <color name="colorBaseLightGreen">#90BC43</color>
+    <color name="colorBaseQeenblue">#436B95</color>
+
+
+    <!--하단 바 비활성화일 때 색상(짙은 회색)-->
+    <color name="no">#878787</color>
+    <!--하단 바 배경색-->
+    <color name="navigation_background_color">#F8F8F8</color>
+    <!--하단 바 배경색-->
+    <color name="lightGray">#DEDEDE</color>
+    <!--주황 색-->
+    <color name="orange_color">#E46C21</color>
+    <color name="help_background">#fcd3c2</color>
+
+    <!-- 투명색 -->
+    <color name="colorTransparent">#00FF0000</color>
+
+    <color name="colorCardView">#E7FF91</color>
+
+    <color name="colorBanner">#CCFAFFFA</color>
+    <color name="colorBlack">#000000</color>
+
+</resources>

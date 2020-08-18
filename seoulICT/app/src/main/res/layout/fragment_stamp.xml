@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:andorid="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_stamp_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0">
+
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/back_btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="false"
+                    android:layout_alignParentEnd="false"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:background="#FFFFFF"
+                    android:src="@drawable/ic_back_light_greay" />
+
+                <View
+
+                    android:layout_width="0dp"
+
+                    android:layout_height="0dp"
+
+                    android:layout_weight="25"
+
+                    />
+
+
+                <TextView
+                    android:id="@+id/selectedArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="[지역 : 서울]" />
+
+                <ImageButton
+                    android:id="@+id/help_btn"
+                    android:layout_width="12dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_help" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title_stamp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:fontFamily="@font/hangeulnuribold"
+                android:gravity="center_horizontal"
+                android:text="언택트 스탬프"
+                android:textColor="@color/colorSlateGray"
+                android:textSize="20sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:id="@+id/list_stamp"
+                    android:layout_width="match_parent"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/search_line"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:paddingStart="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="10dp"
+                    android:visibility="visible">
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/search_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/hangeulnuriregular"
+                    android:hint="관광지 검색"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:paddingBottom="10dp"
+                    android:textSize="@dimen/text_size_normal" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_search" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp">
+
+
+                    <TextView
+                        android:id="@+id/sort_predit"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/border_normal"
+                        android:fontFamily="@font/hangeulnuriregular"
+                        android:gravity="center"
+                        android:text="# 혼잡도정렬" />
+
+                    <TextView
+                        android:id="@+id/sort_location"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/border_normal"
+                        android:fontFamily="@font/hangeulnuriregular"
+                        android:gravity="center"
+                        android:text="# 위치정렬" />
+
+                    <TextView
+                        android:id="@+id/select_area"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+
+                        android:background="@drawable/border_normal"
+                        android:fontFamily="@font/hangeulnuriregular"
+                        android:gravity="center"
+                        android:text="# 지역선택" />
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_narrow"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:scrollbarSize="15dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollbarThumbVertical="@drawable/round_square_background_thumb">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp">
+
+
+            <com.test.mosun.stamp.StampExpandableGridView
+                android:id="@+id/gridview_stamp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="70dp"
+                android:horizontalSpacing="@dimen/margin_normal"
+                android:numColumns="auto_fit"
+                android:overScrollMode="never"
+                android:padding="5dp"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="@dimen/margin_normal" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

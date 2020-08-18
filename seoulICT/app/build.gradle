@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+//코틀린 플러그인
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.0"
+
+
+    defaultConfig {
+        applicationId "com.test.mosun"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    //tensorflow
+    aaptOptions{
+        noCompress "tflite"
+        noCompress "lite"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation files('libs\\libDaumMapAndroid.jar')
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    //네이버 로그인
+    //implementation ('com.naver.nid:naveridlogin-android-sdk:4.2.6')
+    implementation files('libs/naveridlogin_android_sdk_4.2.6.aar')
+    //noinspection GradleCompatible
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    //noinspection GradleCompatible
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
+    //noinspection GradleCompatible
+    implementation 'androidx.browser:browser:1.0.0'
+    //noinspection GradleCompatible
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
+
+    //kakao
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+
+    //이미지 슬라이더
+    implementation 'com.github.smarteist:autoimageslider:1.3.2'
+
+
+    //implementation 'com.github.smarteist:autoimageslider:1.3.9'
+    implementation 'com.github.bumptech.glide:glide:4.11.0' // url 이미지 가져오기
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //qr코드 생성
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+
+    //카카오 맵
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
+
+    //google map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
+    //ted permission
+    implementation "gun0912.ted:tedpermission:2.1.0"
+
+    // 텐서플로우 라이트 추가 부분
+    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //카메라뷰
+    implementation "com.priyankvasa.android:cameraview-ex:3.5.1-alpha"
+
+    //뷰페이저 인디케이터
+    implementation 'me.relex:circleindicator:1.2.2'
+}
+repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+}

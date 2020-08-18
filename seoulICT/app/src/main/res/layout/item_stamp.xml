@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.test.mosun.utility.SquareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/square_linear_layout"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/stamp_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginRight="6dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:paddingTop="10dp"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/landmark_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/hangeulnuriregular"
+                android:gravity="center"
+                android:text="경복궁"
+                android:textColor="@color/colorBlack"
+                android:textSize="12dp" />
+
+
+        </LinearLayout>
+
+        <include layout="@layout/animation_stamp" />
+    </FrameLayout>
+</com.test.mosun.utility.SquareLinearLayout>
+
+
+
+
