@@ -47,41 +47,49 @@ class CameraActivity : AppCompatActivity() {
     private fun setupCamera() {
         camera.addPictureTakenListener {
             val recognitions = classifier.recognize(it.data)
-            Log.d("cameraActivyt-recognition :",recognitions[0].toString());
+            Log.i("모은 ","cameraActivyt-recognition :"+recognitions[0].toString())
+            var checkPercentString = recognitions[0].toString()
+            var checkPercent = checkPercentString.split(": ")
+            Log.i("모은 checkPercent",checkPercentString)
+            Log.i("모은 checkPercent",checkPercent[1].substring(0,2))
+
             if(recognitions[0].toString().startsWith("0"))
             {
-                //50%가 넘으면
-                if(AppManager.getInstance().maskCount==3)
+                var checkPercentString = recognitions[0].toString()
+                var checkPercent = checkPercentString.split(": ")
+                Log.i("모은 checkPercent",checkPercentString)
+                Log.i("모은 checkPercent",checkPercent[1].substring(0,2))
+                checkPercentString = checkPercent[1].substring(0,2)
+                if(Integer.parseInt(checkPercentString)<60) {
+                    Toast.makeText(this, "마스크를 제대로 착용 후 다시 사진을 찍어주세요", Toast.LENGTH_LONG).show()
+                }
+                else
                 {
-                    Toast.makeText(this, "하루 세 번 마스크 스탬프를 얻을 수 있습니다", Toast.LENGTH_LONG).show()
+                    //50%가 넘으면
+                    if(AppManager.getInstance().maskCount==3)
+                    {
+
+                        Toast.makeText(this, "하루 세 번 마스크 스탬프를 얻을 수 있습니다", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        AppManager.getInstance().maskCount++;
+                        Toast.makeText(this, "마스크 스탬프를 획득합니다", Toast.LENGTH_LONG).show()
+                    }
+                    finish();
                 }
-                else{
-                    AppManager.getInstance().maskCount++;
-                    Toast.makeText(this, "마스크 스탬프를 획득합니다", Toast.LENGTH_LONG).show()
-                }
-                finish();
+
+
+
             }
             else{
+
+
                 Toast.makeText(this, "마스크를 쓰고 사진을 찍어주세요", Toast.LENGTH_LONG).show()
 
             }
             val txt = recognitions.joinToString(separator = "\n")
-            Toast.makeText(this, txt, Toast.LENGTH_LONG).show()
-//            onDestroy();
-
-//            AsyncTask.execute {
-//                val recognitions = classifier.recognize(it.data)
-//                Log.d("cameraActivyt-recognition :",recognitions[0].toString());
-//                val txt = recognitions.joinToString(separator = "\n")
-//                Toast.makeText(this, txt, Toast.LENGTH_LONG).show()
-//                onDestroy();
-//                finish();
-////                runOnUiThread {
-//////                    Log.d("cameraActivyt-recognition :",txt);
-////                    Toast.makeText(this, txt, Toast.LENGTH_LONG).show()
-////
-////                }
-//            }
+            //Toast.makeText(this, txt, Toast.LENGTH_LONG).show()
+            Log.i("모은", "마스크 스탬프 확률 : $txt")
         }
 
         scan_btn.setOnClickListener {
