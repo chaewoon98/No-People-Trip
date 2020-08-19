@@ -27,13 +27,6 @@
                 android:layout_margin="@dimen/margin_normal"
                 android:src="@drawable/home_logo" />
 
-            <ImageView
-                android:id="@+id/home_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="300dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/home_menu" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,14 +104,6 @@
                     android:text="8월7일기준" />
 
 
-                <!--        <me.relex.circleindicator.CircleIndicator-->
-                <!--            android:id="@+id/indicator"-->
-                <!--            app:ci_drawable="@drawable/black_radius"-->
-                <!--            app:ci_height="7dp"-->
-                <!--            app:ci_width="7dp"-->
-                <!--            app:ci_margin="4dp"-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="48dp"/>-->
             </LinearLayout>
 
             <ImageView

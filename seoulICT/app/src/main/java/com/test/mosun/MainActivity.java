@@ -1,5 +1,6 @@
 package com.test.mosun;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,14 +9,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     BackPressCloseHandler backPressCloseHandler;
     private PermissionCheck permission;
-
+    boolean isQuit = false;
     private LoginActivity loginActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //permissionCheck();
+        permissionCheck();
     }
 
-
-    private void permissionCheck(){
+        private void permissionCheck(){
         if(Build.VERSION.SDK_INT>=23){
             permission = new PermissionCheck(this,this);
 
@@ -99,62 +102,84 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
+
+
+    //사용자에게 권한요청 요구를 위한 다이어로그를 생성
+    public void CALLDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        alertDialog.setTitle("앱 권한 설정");
+        alertDialog.setMessage("해당 앱의 원할한 기능을 이용하시려면 애플리케이션 정보>권한> 에서 권한을 허용해 주십시오\n['카메라' 와 '위치' 권한 필수]");
+
+        // 권한설정 클릭시 이벤트 발생
+        alertDialog.setPositiveButton("권한설정",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
+                        startActivityForResult(intent,0);
+                        //startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
+        //취소
+        alertDialog.setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.cancel();
+                        Toast.makeText(MainActivity.this, "권한설정이 되지 않아 앱을 종료합니다", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+
+        alertDialog.show();
+    }//end of CALLDialog(
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.i("모은","설정 갔다가 백");
+        switch (requestCode){
+            case 0:
+
+                permissionCheck();
+                break;
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[]grantResults){
-        boolean isQuit = false;
+        Log.i("모은 ","onRequestPermissionsResult(mainActivity)");
+        int result;
         if(!permission.permissionResult(requestCode, permissions, grantResults)){
 
-            for (String pm : permissions) {
-
-
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, pm)) { // 거부된 적이 있으면 해당 권한을 사용할 때 상세 내용을 설명. 거부한 적 있으면 true 리턴.
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                    dialog.setTitle("권한이 필요합니다.")
-                            .setMessage("이 기능을 사용하기 위해서는 단말기의 \"" + pm + "\"권한이 필요합니다. 계속 하시겠습니까?")
-                            .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        permission.requestPermission();
-
-                                    }
-                                }
-                            })
-                            .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //Log.i("모은","기능 취소");
-                                    try {
-                                        toastMessage();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-                            }).create().show();
+            for(String pm : permissions)
+            {
+                result = ContextCompat.checkSelfPermission(this, pm);
+                if(result == PackageManager.PERMISSION_GRANTED)
+                    continue;
+                else
+                {
+                    CALLDialog();
+                    break;
                 }
-
             }
 
-
-
-            //permission.requestPermission();
         }
     }
 
-    private void toastMessage() throws InterruptedException {
-        Toast.makeText(this, "권한설정을 취소합니다.\n설정에 가셔서 권한을 설정 후 앱을 실행시켜주세요", Toast.LENGTH_LONG).show();
-        Thread.sleep(500);
-        finish();
 
-    }
 
     @Override
     public void onBackPressed() {
-
         backPressCloseHandler.onBackPressed();
-
     }
 
     @Override

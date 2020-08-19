@@ -9,10 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.test.mosun.R;
 
 public class Activity_myPage extends AppCompatActivity {
-//    public Activity_myPage(){
-//
-//        onCreate
-//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -22,20 +18,5 @@ public class Activity_myPage extends AppCompatActivity {
     }
 
 
-//    public static Activity_myPage newInstance() {
-//        Activity_myPage fragment = new Activity_myPage();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
-//
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//    }
-//
-//    public View onCreateView(){
-//
-//    }
+
 }

@@ -67,13 +67,13 @@ public class Fragment_Reward extends Fragment {
         });
         // 여기까지
 
-        Button information_button = view.findViewById(R.id.information_button);
-        information_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity)getActivity()).replaceFragment(Fragment_MyInformation.newInstance());
-            }
-        });
+//        Button information_button = view.findViewById(R.id.information_button);
+//        information_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity)getActivity()).replaceFragment(Fragment_MyInformation.newInstance());
+//            }
+//        });
 
         Button logout_button = view.findViewById(R.id.logout_button);
         logout_button.setOnClickListener(new View.OnClickListener(){

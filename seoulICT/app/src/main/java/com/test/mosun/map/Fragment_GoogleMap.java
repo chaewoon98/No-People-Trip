@@ -47,8 +47,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.test.mosun.AppManager;
+import com.test.mosun.MainActivity;
 import com.test.mosun.R;
 import com.test.mosun.stamp.TourList;
+import com.test.mosun.utility.PermissionCheck;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -90,6 +92,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
             .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
 
     private MapView mapView = null;
+    private PermissionCheck permission;//퍼미션 체크
 
     public static Fragment_GoogleMap newInstance() {
         Fragment_GoogleMap fragment = new Fragment_GoogleMap();
@@ -111,8 +114,11 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_google_map, container, false);
 
-//        mapView = new MapView(getActivity());
-//        mapViewContainer = view.findViewById(R.id.googleMap);
+
+
+
+
+
         mapView = (MapView)view.findViewById(R.id.googleMap);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
@@ -125,13 +131,6 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
         mapView.getMapAsync(this);
 
-        // mapView.setCurrentLocationEventListener(this);
-
-//        if (!checkLocationServicesStatus()) {  //위치서비스 안켰을 경우 위치서비스 설정 메세지 띄운다.
-//            showDialogForLocationServiceSetting();
-//        }else {                                //위치서비스 켜져있을 경우 앱 권한에서 위치서비스가 허가되었는지 확인한다.
-//            checkRunTimePermission();
-//        }
 
         mActivity = (AppCompatActivity) getActivity();
 
@@ -172,6 +171,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
             Log.d(TAG, "onResume : call startLocationUpdates");
             if (!mRequestingLocationUpdates) startLocationUpdates();
         }
+
 
         //앱 정보에서 퍼미션을 허가했는지를 다시 검사해봐야 한다.
         if (askPermissionOnceAgain) {

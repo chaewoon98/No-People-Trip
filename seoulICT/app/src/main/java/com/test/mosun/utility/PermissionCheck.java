@@ -5,14 +5,20 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.test.mosun.AppManager;
+import com.test.mosun.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +31,17 @@ public class PermissionCheck {
 
     private Activity activity;
 
-
+    private boolean isQuit=false;
     // 요청할 권한을 배열로 저장해주었습니다.
 
-    private String[] permissions = {
+    public String[] permissions = {
 
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
 
-//                Manifest.permission.READ_EXTERNAL_STORAGE,
-//
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE
-
     };
+
 
     private List permissionList;
 
@@ -61,6 +64,7 @@ public class PermissionCheck {
     }
 
 
+
     // 허용 받아야할 권한이 남았는지 체크
 
     public boolean checkPermission() {
@@ -76,8 +80,10 @@ public class PermissionCheck {
 
             result = ContextCompat.checkSelfPermission(context, pm);
 
+
             if (result != PackageManager.PERMISSION_GRANTED) {
 
+                Log.i("모은 pm 체크",pm);
                 permissionList.add(pm);
 
             }
@@ -99,16 +105,17 @@ public class PermissionCheck {
     // 권한 허용 요청
 
     public void requestPermission() {
-
+        Log.i("모은 ","requestPermission(permissionCheck)");
         ActivityCompat.requestPermissions(activity, (String[]) permissionList.toArray(new String[permissionList.size()]), MULTIPLE_PERMISSIONS);
 
     }
 
 
+
     // 권한 요청에 대한 결과 처리
 
     public boolean permissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
+        Log.i("모은 ","permissionResult(permissionCheck)");
 
         // 우선 requestCode가 아까 위에 final로 선언하였던 숫자와 맞는지, 결과값의 길이가 0보다는 큰지 먼저 체크했습니다.
 
@@ -133,6 +140,10 @@ public class PermissionCheck {
         return true;
 
     }
+
+
+
+
 
 }
 

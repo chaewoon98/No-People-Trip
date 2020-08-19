@@ -249,29 +249,12 @@ public class LoadingActivity extends AppCompatActivity {
         listSeoul.add(new TourList("태릉", "설명", 37.6038265,127.0225271, taerungPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
         listSeoul.add(new TourList("의릉", "설명", 37.6038317,127.0553579, uirungPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
         listSeoul.add(new TourList("영희원", "설명", 37.5885055,127.0414405, younghwiwonPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        //전주
-        listJeonju.add(new TourList("경기전", "설명", 35.8153224,127.1476037, gyeonggijeonPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listJeonju.add(new TourList("국립전주박물관", "설명", 35.8012972,127.0875554, nationalMuseumInjeonjuPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listJeonju.add(new TourList("스파라쿠아", "설명", 35.8174308,127.1134445, sparacuaPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listJeonju.add(new TourList("전주 동물원", "설명", 35.8555198,127.1424744, zooInJeonjuPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listJeonju.add(new TourList("한벽문화관", "설명", 35.8120443,127.1562016, hanbyukPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listJeonju.add(new TourList("한옥레일바이크", "설명", 35.829531,127.1739387, railBikePridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listJeonju.add(new TourList("한국도로공사수목원", "설명", 35.870964,127.0521402, arboretumPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        //순창
-        listSunchang.add(new TourList("강천산", "설명", 35.4087639,127.065336 , kangcheonMountainPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listSunchang.add(new TourList("황토열매마을", "설명", 35.3192685,127.0533413, fruitVilagePridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listSunchang.add(new TourList("고추장익는마을", "설명", 35.4833446,127.1144903, pepperVilagePridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listSunchang.add(new TourList("장류체험관", "설명", 35.3657696,127.1061715, jangruPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listSunchang.add(new TourList("산림박물관", "설명", 35.4788907,126.9227723, mountainMuseumPridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listSunchang.add(new TourList("발효소스토굴", "설명", 35.3673458,127.1006084, fermentationSaucePridictionNumber,0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
 
         Collections.sort(listSeoul, new SortListByPredictNumber());
-        Collections.sort(listSunchang, new SortListByPredictNumber());
-        Collections.sort(listJeonju, new SortListByPredictNumber());
+
 
         AppManager.getInstance().setTourList(listSeoul);
-        AppManager.getInstance().setJeonjuList(listJeonju);
-        AppManager.getInstance().setSunchangList(listSunchang);
+
 
 
 
@@ -303,15 +286,7 @@ public class LoadingActivity extends AppCompatActivity {
         }
 
     }
-    //    private  void ccc()
-//    {
-//        ArrayList<TourList> list = AppManager.getInstance().getTourList();
-//
-//        list = AppManager.getInstance().getTourList();
-//        for(TourList item : list) {
-//            Log.i("모은 load (loading",Boolean.toString(item.isCollected()));
-//        }
-//    }
+
     private void saveData()
     {
         Log.i("모은 saveData","saveData");
@@ -340,22 +315,10 @@ public class LoadingActivity extends AppCompatActivity {
             String isCollected = prefs.getString(item.getTourTitle(), "");
             Log.i("모은 loadData(loading)", isCollected);
             item.setCollected(Boolean.valueOf(isCollected));
-//            if(isCollected=="true")
-//            {
-//                Log.i("모은 loadData true(loading)", item.getTourTitle());
-//
-//                item.setCollected(true);
-//            }
-//            else{
-//                item.setCollected(false);
-//            }
-//            item.setCollected();;
+
         }
         AppManager.getInstance().setTourList(list);
-//        list = AppManager.getInstance().getTourList();
-//        for(TourList item : list) {
-//            Log.i("모은 load (loading",Boolean.toString(item.isCollected()));
-//        }
+
 
 
 
