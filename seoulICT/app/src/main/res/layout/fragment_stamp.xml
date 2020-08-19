@@ -51,14 +51,6 @@
                     />
 
 
-                <TextView
-                    android:id="@+id/selectedArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:text="[지역 : 서울]" />
-
                 <ImageButton
                     android:id="@+id/help_btn"
                     android:layout_width="12dp"
@@ -154,17 +146,6 @@
                         android:gravity="center"
                         android:text="# 위치정렬" />
 
-                    <TextView
-                        android:id="@+id/select_area"
-                        android:layout_width="80dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_weight="1"
-
-                        android:background="@drawable/border_normal"
-                        android:fontFamily="@font/hangeulnuriregular"
-                        android:gravity="center"
-                        android:text="# 지역선택" />
                 </LinearLayout>
 
 

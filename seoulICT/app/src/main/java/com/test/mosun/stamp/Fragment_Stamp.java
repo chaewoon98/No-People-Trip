@@ -33,6 +33,7 @@ import com.test.mosun.MainActivity;
 import com.test.mosun.R;
 import com.test.mosun.data.QRData;
 import com.test.mosun.data.QRResponse;
+import com.test.mosun.home.Fragment_Home;
 import com.test.mosun.home.Fragment_selectArea;
 import com.test.mosun.map.GpsInfo;
 import com.test.mosun.network.RetrofitClient;
@@ -193,19 +194,7 @@ public class Fragment_Stamp extends Fragment {
         });
 
 
-        //#지역선택 시
-        TextView selectArea = view.findViewById(R.id.select_area);
-        selectArea.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), CoursePopupActivity.class);
-//                startActivity(intent);
 
-                // getActivity()로 MainActivity의 replaceFragment를 불러옵니다.
-                ((MainActivity)getActivity()).replaceFragment(Fragment_selectArea.newInstance());    // 새로 불러올 Fragment의 Instance를 Main으로 전달
-
-            }
-        });
 
         //뒤로가기 선택 시
         ImageButton back_btn = (ImageButton)view.findViewById(R.id.back_btn2);
@@ -213,14 +202,11 @@ public class Fragment_Stamp extends Fragment {
 
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).replaceFragment(Fragment_Stamp.newInstance());
+                ((MainActivity)getActivity()).replaceFragment(Fragment_Home.newInstance());
             }
         });
 
-        //selectedArea설정
-        TextView textViewSelectedArea = (TextView)view.findViewById(R.id.selectedArea);
-        Log.i("모은 selectedArea",selectedArea);
-        textViewSelectedArea.setText("[지역 : "+ selectedArea + "]");
+
 
 
         //qr_num 가져오기
