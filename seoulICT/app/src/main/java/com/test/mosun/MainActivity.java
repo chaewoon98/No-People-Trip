@@ -16,6 +16,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private PermissionCheck permission;
     boolean isQuit = false;
     private LoginActivity loginActivity;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +108,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void setCurveBottomBarVisibility()
+    {Log.i("모은 ","네비게이션 visibility");
+
+        if (curveBottomBar.isShown()) {
+            curveBottomBar.setVisibility(View.GONE);
+            floatingActionButton.hide();
+        } else {
+            curveBottomBar.setVisibility(View.VISIBLE);
+            floatingActionButton.show();
+        }
+
+
+    }
+
+    public void hideCurveBottomBar()
+    {
+        Log.i("모은 ","네비게이션 hide");
+
+            curveBottomBar.setVisibility(View.GONE);
+        floatingActionButton.hide();
+    }
+    public void showCurveBottomBar()
+    {
+        Log.i("모은 ","네비게이션 show");
+
+        curveBottomBar.setVisibility(View.VISIBLE);
+        floatingActionButton.show();
+    }
 
 
 
@@ -267,11 +300,16 @@ class BackPressCloseHandler {
     private Toast toast;
     private Activity activity;
     private LoginActivity loginActivity;
+    private MainActivity mainActivity;
+    InputMethodManager inputMethodManager;
+
     public BackPressCloseHandler(Activity context) {
         this.activity = context;
     }
 
     public void onBackPressed() {
+
+        Log.i("모은 ","main 백 버튼");
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             showGuide();

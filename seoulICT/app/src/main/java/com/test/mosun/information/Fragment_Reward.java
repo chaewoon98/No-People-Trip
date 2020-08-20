@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -41,6 +42,7 @@ public class Fragment_Reward extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_reward, container, false);
 
+        TextView nameText = (TextView)view.findViewById(R.id.name_text);
         //프로그래스바 채우기
         progressBar = view.findViewById(R.id.total_progress_bar);
         progressBar.setProgress(AppManager.getInstance().stampCount);//관광지에 따른 스탬프 카운트로 바꾸기

@@ -55,7 +55,8 @@
         <activity
             android:name=".activity.CoursePopupActivity"
             android:theme="@style/PopUpTheme" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity android:name=".activity.CourseActivity" />
         <activity android:name=".activity.AreaActivity" />
         <activity android:name=".qrcode.QRNetworkActivity" />
@@ -67,6 +68,8 @@
         <!--        0811 추가-->
         <activity android:name=".qrcode.MaskPopupActivity"
             android:theme="@style/PopUpTheme" />
+
+
 
 
     </application>

@@ -71,6 +71,10 @@ public class AppManager {
     public void setUserID(String userID) {this.userId = userID;}
     public String getUserId() { return userId;}
 
+    private String userName = null;
+    public void setUserName(String userName) {this.userName = userName;}
+    public String getUserName() { return userName;}
+
     private FloatingActionButton floatingActionButton;
     public void setMenuFloatingActionButton (FloatingActionButton floatingActionButton) {this.floatingActionButton = floatingActionButton;}
     public FloatingActionButton getMenuFloatingActionButton() { return floatingActionButton; }

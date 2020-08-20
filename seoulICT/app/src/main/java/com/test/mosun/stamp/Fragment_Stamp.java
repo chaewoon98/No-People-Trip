@@ -1,6 +1,7 @@
 package com.test.mosun.stamp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
@@ -9,12 +10,18 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -38,9 +45,12 @@ import com.test.mosun.home.Fragment_selectArea;
 import com.test.mosun.map.GpsInfo;
 import com.test.mosun.network.RetrofitClient;
 import com.test.mosun.network.ServiceApi;
+import com.test.mosun.utility.CustomEditText;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,6 +67,7 @@ public class Fragment_Stamp extends Fragment {
     StampExpandableGridView stampGridView;
     StampAdapter stampAdapter;
     ArrayList<TourList> tourList, searchList;
+   InputMethodManager inputMethodManager;
     ProgressBar progressBar;
     String searchword;
 
@@ -65,7 +76,7 @@ public class Fragment_Stamp extends Fragment {
     double distance;
     private static String selectedArea = "서울";
     private ServiceApi service;
-
+    static CustomEditText editTextFilter;
 
     public Fragment_Stamp(){
 
@@ -84,25 +95,6 @@ public class Fragment_Stamp extends Fragment {
         service = RetrofitClient.getClient().create(ServiceApi.class);
 
         tourList = AppManager.getInstance().getTourList();
-//        Bundle bundle = getArguments();
-//
-//        if(bundle.getString("area") != null){
-//            String area = bundle.getString("area"); //Name 받기.
-//            selectedArea = area;
-//            Log.i("bundle",area);
-//            if(area == "서울"){
-//                tourList = AppManager.getInstance().getTourList();
-//            } else if(area == "전주"){
-//                tourList = AppManager.getInstance().getJeonjuList();
-//            } else if(area == "순창"){
-//                tourList = AppManager.getInstance().getSunchangList();
-//            }
-//        }
-//        else
-//        {
-//            Toast.makeText(getContext(),"홈화면의 지역선택부터 해주세요",Toast.LENGTH_SHORT).show();
-//            ((MainActivity)getActivity()).replaceFragment(Fragment_selectArea.newInstance());
-//        }
 
         searchList = new ArrayList<>();
         searchList.addAll(tourList);
@@ -135,26 +127,10 @@ public class Fragment_Stamp extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_stamp, container, false);
 
-//        for(TourList item :searchList){
-//            LinearLayout layout = view.findViewById(R.id.square_linear_layout);
-//
-//
-//            if ( item.isCollected()) {
-//                layout.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.rectangle_iscollected));
-//            }
-//            if (item.getPridictionNumber() >= 2000) {
-//                layout.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.rectangle_bad));
-//            } else if (item.getPridictionNumber() < 2000 && item.getPridictionNumber() > 500) {
-//                layout.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.rectangle_soso));
-//            } else {
-//                layout.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.rectangle_good));
-//            }
-//        }
 
 
 
 
-//        stampAdapter.updateAdpater(AppManager.getInstance().getTourList());
         Log.d("onCreateView", "stamp 갱신");
 
         stampGridView = view.findViewById(R.id.gridview_stamp);
@@ -171,10 +147,44 @@ public class Fragment_Stamp extends Fragment {
         sortByDistance.setOnClickListener(v -> stampAdapter.filterDistance());
         sortByPredictionNumber.setOnClickListener(v -> stampAdapter.filterPrediction());
 
-        EditText editTextFilter = (EditText)view.findViewById(R.id.search_edit_text) ;
+        editTextFilter = (CustomEditText) view.findViewById(R.id.search_edit_text);
+        editTextFilter.requestFocus();
+
+
+
+
+
+
+        inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        editTextFilter.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                Log.i("모은 keyevent",keyEvent.toString());
+                if (i == EditorInfo.IME_ACTION_SEARCH ) {
+                    inputMethodManager.hideSoftInputFromWindow(editTextFilter.getWindowToken(), 0);
+                    editTextFilter.setShowSoftInputOnFocus(true);
+                    ((MainActivity)getActivity()).setCurveBottomBarVisibility();
+                }
+
+
+                return false;
+            }
+        });
+
+        editTextFilter.setOnClickListener(new View.OnClickListener() {  //editTextFilter click event
+            @Override
+            public void onClick(View v) {
+
+                Log.i("모은 ","네비게이션 클릭 이벤트");
+                ((MainActivity)getActivity()).setCurveBottomBarVisibility();
+                editTextFilter.setShowSoftInputOnFocus(true);
+
+            }
+        });
         editTextFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable edit) {
+
                 String filterText = edit.toString();
                 if (filterText.length() >= 0) {
                     stampAdapter.filter(filterText);
@@ -192,6 +202,13 @@ public class Fragment_Stamp extends Fragment {
             }
 
         });
+
+
+
+        editTextFilter.setOnBackPressListener(onBackPressListener);
+
+
+
 
 
 
@@ -217,6 +234,25 @@ public class Fragment_Stamp extends Fragment {
         }
         return view;
     }
+
+
+    private CustomEditText.OnBackPressListener onBackPressListener = new CustomEditText.OnBackPressListener()
+    {
+        @Override
+        public void onBackPress()
+        {
+
+                ExecutorService es = Executors.newSingleThreadExecutor();
+                es.submit(() ->  inputMethodManager.hideSoftInputFromWindow(editTextFilter.getWindowToken(), 0));
+                es.submit(() ->   ((MainActivity)getActivity()).showCurveBottomBar());
+                es.submit(() ->  Log.i("모은 ","back button click  im"));
+                es.shutdown();
+                return;
+
+
+
+        }
+    };
 
 
     public void init(){
@@ -365,4 +401,10 @@ public class Fragment_Stamp extends Fragment {
         return qr_num[0];
     }
 
+
+
 }
+
+
+
+

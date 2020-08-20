@@ -13,6 +13,7 @@ import com.kakao.usermgmt.response.model.Profile;
 import com.kakao.usermgmt.response.model.UserAccount;
 import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
+import com.test.mosun.AppManager;
 import com.test.mosun.data.LoginData;
 
 import static java.lang.Boolean.TRUE;
@@ -92,6 +93,7 @@ public class SessionCallback  {
 
                         Log.i("KAKAO_API", "사용자 닉네임: " + result.getKakaoAccount().getProfile().getNickname());
                         user_name = kakaoAccount.getProfile().getNickname();
+                        AppManager.getInstance().setUserName(user_name);
 
 
                         data = new LoginData(user_id, user_age, user_gender, user_email, user_name, user_birthday,"kakao");

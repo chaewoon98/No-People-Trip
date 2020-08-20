@@ -412,6 +412,8 @@ public class LoginActivity extends Activity  {
                 Log.i("name", name);
                 Log.i("birthday", birthday);
 
+                AppManager.getInstance().setUserName(name);
+
                 startLogin(new LoginData(id, age, gender, email, name, birthday,"naver"));
 
             } catch (JSONException e) {
