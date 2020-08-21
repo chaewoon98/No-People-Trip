@@ -163,7 +163,7 @@ public class Fragment_Stamp extends Fragment {
                 if (i == EditorInfo.IME_ACTION_SEARCH ) {
                     inputMethodManager.hideSoftInputFromWindow(editTextFilter.getWindowToken(), 0);
                     editTextFilter.setShowSoftInputOnFocus(true);
-                    ((MainActivity)getActivity()).setCurveBottomBarVisibility();
+                    ((MainActivity)getActivity()).showCurveBottomBar();
                 }
 
 
@@ -176,7 +176,7 @@ public class Fragment_Stamp extends Fragment {
             public void onClick(View v) {
 
                 Log.i("모은 ","네비게이션 클릭 이벤트");
-                ((MainActivity)getActivity()).setCurveBottomBarVisibility();
+                ((MainActivity)getActivity()).hideCurveBottomBar();
                 editTextFilter.setShowSoftInputOnFocus(true);
 
             }

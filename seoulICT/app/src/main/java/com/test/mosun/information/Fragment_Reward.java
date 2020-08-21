@@ -1,5 +1,9 @@
 package com.test.mosun.information;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +18,8 @@ import androidx.fragment.app.Fragment;
 import com.test.mosun.AppManager;
 import com.test.mosun.MainActivity;
 import com.test.mosun.R;
-
+import com.test.mosun.login.LoginActivity;
+import com.test.mosun.qrcode.CreateQR;
 
 
 public class Fragment_Reward extends Fragment {
@@ -43,9 +48,40 @@ public class Fragment_Reward extends Fragment {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_reward, container, false);
 
         TextView nameText = (TextView)view.findViewById(R.id.name_text);
+        String userName = AppManager.getInstance().getUserName();
+        nameText.setText("'"+userName+"' 님 ");
+
+        TextView levelText = (TextView)view.findViewById(R.id.level_text);
+        int AllCount = AppManager.getInstance().stampCount+ AppManager.getInstance().maskCount;
+        if(AllCount <10)
+            levelText.setText("Level.1");
+        else if(AllCount >=10 && AllCount <20)
+            levelText.setText("Level.2");
+        else
+            levelText.setText("Level.3");
+
+
+        TextView levelDescriptionText = (TextView)view.findViewById(R.id.level_description_text);
+        int leftStamp = 0;
+        String level = (String) levelText.getText();
+        switch (level)
+        {
+            case "Level.1":
+                leftStamp = 10-AllCount;
+                levelDescriptionText.setText("다음 레벨까지 " +leftStamp +" 스탬프 남았어요!");
+                break;
+            case "Level.2":
+                leftStamp = 20-AllCount;
+                levelDescriptionText.setText("다음 레벨까지 " +leftStamp +" 스탬프 남았어요!");
+            case "Level.3":
+                leftStamp = 30-AllCount;
+                levelDescriptionText.setText("보상까지 " +leftStamp +" 남았어요!");
+                break;
+        }
+
         //프로그래스바 채우기
         progressBar = view.findViewById(R.id.total_progress_bar);
-        progressBar.setProgress(AppManager.getInstance().stampCount);//관광지에 따른 스탬프 카운트로 바꾸기
+        progressBar.setProgress(AllCount);//관광지에 따른 스탬프 카운트로 바꾸기 > 새로고침 할 수 있게 바꾸기
 
         //버튼 클릭 이벤트 생성
         Button total_stamp_button = view.findViewById(R.id.total_stamp_button);
@@ -69,19 +105,22 @@ public class Fragment_Reward extends Fragment {
         });
         // 여기까지
 
-//        Button information_button = view.findViewById(R.id.information_button);
-//        information_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((MainActivity)getActivity()).replaceFragment(Fragment_MyInformation.newInstance());
-//            }
-//        });
+
 
         Button logout_button = view.findViewById(R.id.logout_button);
         logout_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                //sharedPreference 삭제
+                ((MainActivity)getActivity()).removeKey("user_id");
 
+                //서버에 데이터 저장
+
+
+
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.putExtra("logout","naver");
+                startActivity(intent);
             }
         });
 
@@ -89,11 +128,15 @@ public class Fragment_Reward extends Fragment {
         withdraw_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WithdrawalPopUpActivity.class);
+                startActivity(intent);
+
 
             }
         });
 
         return view;
     }
+
 
 }

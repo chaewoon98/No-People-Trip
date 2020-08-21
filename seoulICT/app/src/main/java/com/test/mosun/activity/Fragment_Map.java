@@ -1,11 +1,10 @@
-package com.test.mosun.map;
+package com.test.mosun.activity;
 
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.test.mosun.R;
 import androidx.fragment.app.Fragment;

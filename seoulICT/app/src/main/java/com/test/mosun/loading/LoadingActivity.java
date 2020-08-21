@@ -8,16 +8,21 @@ import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.test.mosun.AppManager;
 import com.test.mosun.MainActivity;
 import com.test.mosun.R;
+import com.test.mosun.data.LoginData;
+import com.test.mosun.data.LoginResponse;
 import com.test.mosun.home.areaItem;
 import com.test.mosun.login.LoginActivity;
 import com.test.mosun.network.NetworkActivity;
 import com.test.mosun.network.NetworkStatus;
+import com.test.mosun.network.RetrofitClient;
+import com.test.mosun.network.ServiceApi;
 import com.test.mosun.stamp.TourList;
 
 import org.tensorflow.lite.Interpreter;
@@ -30,6 +35,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoadingActivity extends AppCompatActivity {
@@ -129,13 +138,15 @@ public class LoadingActivity extends AppCompatActivity {
     private float fermentationSaucePridictionNumber;
 
     ArrayList<TourList> tourList = null;
-
+    private ServiceApi service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        service = RetrofitClient.getClient().create(ServiceApi.class);
 
+        //onclearData(); //데이터 지우기
         initTensorflow();
         checkData();
         getNetworkConnection(); //네트워크 연결 확인
@@ -167,6 +178,10 @@ public class LoadingActivity extends AppCompatActivity {
         }
     }
     /***** 기존 정보 가져오기 *****/
+    private void getServerData()
+    {
+
+    }
     private void getLoginData()
     {
         SharedPreferences sp = getSharedPreferences("NPT", MODE_PRIVATE);
@@ -175,6 +190,7 @@ public class LoadingActivity extends AppCompatActivity {
         if(loginId != null )
         {
             Log.i("모은 loginId",loginId);
+            startLogin(new LoginData(loginId));
             finish();
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
@@ -195,6 +211,7 @@ public class LoadingActivity extends AppCompatActivity {
      */
     public void onclearData() {
 
+        Log.i("모은","데이터 삭제 완료");
         SharedPreferences sp = getSharedPreferences("NPT", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
@@ -264,6 +281,7 @@ public class LoadingActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("NPT", Context.MODE_PRIVATE);
         if(prefs.contains("경복궁"))
         {
+
             ExecutorService es = Executors.newSingleThreadExecutor();
             es.submit(() -> onSaveTourListData());
             es.submit(() -> loadData());
@@ -317,8 +335,13 @@ public class LoadingActivity extends AppCompatActivity {
             item.setCollected(Boolean.valueOf(isCollected));
 
         }
+
+
         AppManager.getInstance().setTourList(list);
 
+        AppManager.getInstance().setStampCount(Integer.parseInt(prefs.getString("stampCount", "")));
+        AppManager.getInstance().setMaskCount(Integer.parseInt(prefs.getString("maskCount", "")));
+        Log.i("모은","stampCount(loading) "+AppManager.getInstance().getStampCount());
 
 
 
@@ -475,6 +498,35 @@ public class LoadingActivity extends AppCompatActivity {
         MappedByteBuffer buffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
         interpreter = new Interpreter(buffer);
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+    }
+
+    protected void startLogin(LoginData data) {
+
+        service.getUserData(data).enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse result = response.body();
+
+
+                Log.i("모은", "startLogin 들어옴 + "+ result.getUserName() );
+                AppManager.getInstance().setUserName(result.getUserName());
+
+//                ExecutorService es = Executors.newSingleThreadExecutor();
+//                es.submit(() -> onSaveLoginData());
+//                es.submit(() -> goToNextActivity());
+//                es.shutdown();
+////                onSaveLoginData();
+////                goToNextActivity();
+            }
+
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                //Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                Log.e("모은 ", " 로그인 에러 발생"+t.getMessage());
+
+            }
+        });
     }
 }
 

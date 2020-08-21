@@ -36,6 +36,12 @@ public class LoginData {
         this.userBirthday = userBirthday;
         this.userSns = userSns;
     }
+
+
+    public LoginData(String userId)
+    {
+        this.userId = userId;
+    }
     public String getUserId() {
         return userId;
     }

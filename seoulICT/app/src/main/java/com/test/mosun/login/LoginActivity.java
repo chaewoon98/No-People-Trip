@@ -131,35 +131,47 @@ public class LoginActivity extends Activity  {
         setContentView(R.layout.activity_login);
         setStatusBar();// 상태바 색상 설정
 
+        String getIntentData = getIntent().getStringExtra("logout");
+        Log.i("모은 ","getIntentData :"+getIntentData);
+
+        if(getIntentData!=null && getIntentData.equals("naver"))
+        {
+            naverLogout();
+        }
+        else if(getIntentData!=null && getIntentData.equals("kakao"))
+        {
+            kakaoLogOut();
+        }
 
 
-        //카카오 로그인 데이터
-        session = Session.getCurrentSession();
-        session.addCallback(sessionCallback);
+
+            //카카오 로그인 데이터
+            session = Session.getCurrentSession();
+            session.addCallback(sessionCallback);
 
 
+            //session.checkAndImplicitOpen();//로그인 세션을 열린채로 유지
 
-        //session.checkAndImplicitOpen();//로그인 세션을 열린채로 유지
+            //네이버 로그인 데이터 & 뷰 초기화
+            mContext = this;
+            initData();
+            initView();
 
-        //네이버 로그인 데이터 & 뷰 초기화
-        mContext = this;
-        initData();
-        initView();
-
-        // 인공지능 데이터 가져오기
+            // 인공지능 데이터 가져오기
 
 
-        //데이타 로딩 > 나중에 로딩 액티비티로 옮기기
-        //onSaveAreaData();
-       // onSaveTourListData();
+            //데이타 로딩 > 나중에 로딩 액티비티로 옮기기
+            //onSaveAreaData();
+            // onSaveTourListData();
 
-        //애니메이션 설정
-        setAnimation();
+            //애니메이션 설정
+            setAnimation();
 
-        // 버튼 이벤트 설정
-        //findViewById(R.id.nextButton).setOnClickListener(btnClickListener);
-        findViewById(R.id.buttonOAuthLoginImg).setOnClickListener(btnClickListener);
-        findViewById(R.id.btn_kakao_login).setOnClickListener(btnClickListener);
+            // 버튼 이벤트 설정
+            //findViewById(R.id.nextButton).setOnClickListener(btnClickListener);
+            findViewById(R.id.buttonOAuthLoginImg).setOnClickListener(btnClickListener);
+            findViewById(R.id.btn_kakao_login).setOnClickListener(btnClickListener);
+
     }
 
 
@@ -323,7 +335,7 @@ public class LoginActivity extends Activity  {
 
     }
 
-    private void naverLogout()
+    public void naverLogout()
     {
         mOAuthLoginInstance.logout(mContext);
     }

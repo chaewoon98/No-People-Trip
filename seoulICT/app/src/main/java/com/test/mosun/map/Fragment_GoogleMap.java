@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -107,19 +108,19 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
         super.onCreate(savedInstanceState);
         locationList = AppManager.getInstance().getLocationList();
         tourList = AppManager.getInstance().getTourList();
+
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_google_map, container, false);
 
+        mapView = (MapView) view.findViewById(R.id.googleMap);
 
 
 
 
-
-        mapView = (MapView)view.findViewById(R.id.googleMap);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
 
@@ -137,19 +138,20 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
         //발자취 버튼
         button = view.findViewById(R.id.floatingActionButton);
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //&&
                 //addFootprint(mGoogleMap, tourList);
+
                 setMarker();
             }
         });
 
         //내 위치로 돌아가는 버튼
         myLocationButton = view.findViewById(R.id.myLocationButton);
-        myLocationButton.setOnClickListener(new View.OnClickListener(){
+        myLocationButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -165,6 +167,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
     public void onResume() {
 
         super.onResume();
+
 
         if (mGoogleApiClient.isConnected()) {
 
@@ -192,7 +195,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
             Log.d(TAG, "startLocationUpdates : call showDialogForLocationServiceSetting");
             showDialogForLocationServiceSetting();
-        }else{
+        } else {
 
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                     && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -211,30 +214,33 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
     private void stopLocationUpdates() {
 
-        Log.d(TAG,"stopLocationUpdates : LocationServices.FusedLocationApi.removeLocationUpdates");
+        Log.d(TAG, "stopLocationUpdates : LocationServices.FusedLocationApi.removeLocationUpdates");
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         mRequestingLocationUpdates = false;
     }
 
-    public void setMarker(){
-        if(isButtonOpen){
+    public void setMarker() {
+        if (isButtonOpen) {
+            Toast.makeText(getContext(), "스탬프 코스를 확인해보세요", Toast.LENGTH_SHORT).show();
+
             addMarker(mGoogleMap, tourList);  //모든 관광지에 마커 띄우기
 
             button.setImageResource(R.drawable.footprint);
             isButtonOpen = false;
-        }else{
+        } else {
             addFootprint(mGoogleMap, tourList);  //스탬프 찍은 관광지에 발자국 띄우기
+            Toast.makeText(getContext(), "스탬프 발자취를 확인해보세요", Toast.LENGTH_SHORT).show();
 
             button.setImageResource(R.drawable.ic_baseline_location_on_24);
             isButtonOpen = true;
         }
     }
 
-    public void addMarker(GoogleMap googleMap, ArrayList<TourList> tourList){
+    public void addMarker(GoogleMap googleMap, ArrayList<TourList> tourList) {
 
         googleMap.clear();  //마커 전부 지우기
 
-        for(TourList item : tourList){
+        for (TourList item : tourList) {
             //관광지 좌표값 저장
             LatLng coordinate = new LatLng(item.getLatitude(), item.getLongitude());
 
@@ -266,11 +272,11 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
         }
     }
 
-    public void addFootprint(GoogleMap googleMap, ArrayList<TourList> tourList){
+    public void addFootprint(GoogleMap googleMap, ArrayList<TourList> tourList) {
 
         googleMap.clear();  //마커 전부 지우기
 
-        for(TourList item : tourList) {
+        for (TourList item : tourList) {
             //관광지 좌표값 저장
             LatLng coordinate = new LatLng(item.getLatitude(), item.getLongitude());
 
@@ -294,7 +300,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
         }
     }
 
-    public void getMyLocation(GoogleMap googleMap){
+    public void getMyLocation(GoogleMap googleMap) {
         LatLng latLng = currentPosition;
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
         googleMap.animateCamera(cameraUpdate);
@@ -318,11 +324,11 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
         mGoogleMap.getUiSettings().setZoomControlsEnabled(false);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-        mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener(){
+        mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
             @Override
             public boolean onMyLocationButtonClick() {
 
-                Log.d( TAG, "onMyLocationButtonClick : 위치에 따른 카메라 이동 활성화");
+                Log.d(TAG, "onMyLocationButtonClick : 위치에 따른 카메라 이동 활성화");
                 mMoveMapByAPI = true;
                 return false;
             }
@@ -332,7 +338,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
             @Override
             public void onMapClick(LatLng latLng) {
 
-                Log.d( TAG, "onMapClick :");
+                Log.d(TAG, "onMapClick :");
             }
         });
 
@@ -341,7 +347,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
             @Override
             public void onCameraMoveStarted(int i) {
 
-                if (mMoveMapByUser == true && mRequestingLocationUpdates){
+                if (mMoveMapByUser == true && mRequestingLocationUpdates) {
 
                     Log.d(TAG, "onCameraMove : 위치에 따른 카메라 이동 비활성화");
                     mMoveMapByAPI = false;
@@ -372,14 +378,14 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
     @Override
     public void onLocationChanged(Location location) {
 
-        currentPosition = new LatLng( location.getLatitude(), location.getLongitude());
+        currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
 
 //        double d1=location.getLatitude();
 //        double d2=location.getLongitude();
 //        Log.e("onMyLocationChange", d1 + "," + d2);
 ////        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(d1, d2), 18));
 
-        if(isDefaultLocation == true) {
+        if (isDefaultLocation == true) {
             mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 18));
             isDefaultLocation = false;
         }
@@ -395,7 +401,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
     @Override
     public void onStart() {
 
-        if(mGoogleApiClient != null && mGoogleApiClient.isConnected() == false){
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected() == false) {
 
             Log.d(TAG, "onStart: mGoogleApiClient connect");
             mGoogleApiClient.connect();
@@ -413,7 +419,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
             stopLocationUpdates();
         }
 
-        if ( mGoogleApiClient.isConnected()) {
+        if (mGoogleApiClient.isConnected()) {
 
             Log.d(TAG, "onStop : mGoogleApiClient disconnect");
             mGoogleApiClient.disconnect();
@@ -425,7 +431,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
     @Override
     public void onConnected(Bundle connectionHint) {
 
-        if ( mRequestingLocationUpdates == false ) {
+        if (mRequestingLocationUpdates == false) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -447,7 +453,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
                 }
 
-            }else{
+            } else {
 
                 Log.d(TAG, "onConnected : call startLocationUpdates");
                 startLocationUpdates();
@@ -535,10 +541,10 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
         currentMarker = mGoogleMap.addMarker(markerOptions);
 
-        if ( mMoveMapByAPI ) {
+        if (mMoveMapByAPI) {
 
-            Log.d( TAG, "setCurrentLocation :  mGoogleMap moveCamera "
-                    + location.getLatitude() + " " + location.getLongitude() ) ;
+            Log.d(TAG, "setCurrentLocation :  mGoogleMap moveCamera "
+                    + location.getLatitude() + " " + location.getLongitude());
             //CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng, 15);
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
             mGoogleMap.moveCamera(cameraUpdate);
@@ -587,7 +593,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
             Log.d(TAG, "checkPermissions : 퍼미션 가지고 있음");
 
-            if ( mGoogleApiClient.isConnected() == false) {
+            if (mGoogleApiClient.isConnected() == false) {
 
                 Log.d(TAG, "checkPermissions : 퍼미션 가지고 있음");
                 mGoogleApiClient.connect();
@@ -605,7 +611,7 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
             if (permissionAccepted) {
 
-                if ( mGoogleApiClient.isConnected() == false) {
+                if (mGoogleApiClient.isConnected() == false) {
 
                     Log.d(TAG, "onRequestPermissionsResult : mGoogleApiClient connect");
                     mGoogleApiClient.connect();
@@ -709,9 +715,9 @@ public class Fragment_GoogleMap extends Fragment implements OnMapReadyCallback, 
 
                         Log.d(TAG, "onActivityResult : 퍼미션 가지고 있음");
 
-                        if ( mGoogleApiClient.isConnected() == false ) {
+                        if (mGoogleApiClient.isConnected() == false) {
 
-                            Log.d( TAG, "onActivityResult : mGoogleApiClient connect ");
+                            Log.d(TAG, "onActivityResult : mGoogleApiClient connect ");
                             mGoogleApiClient.connect();
                         }
                         return;

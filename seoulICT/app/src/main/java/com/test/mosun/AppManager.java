@@ -1,7 +1,5 @@
 package com.test.mosun;
 
-import android.Manifest;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.test.mosun.home.areaItem;
 import com.test.mosun.login.LoginActivity;
@@ -33,7 +31,11 @@ public class AppManager {
     }
 
 
+    public void setMaskCount(int maskCount){ this.maskCount = maskCount; }
     public int getMaskCount(){ return maskCount;}
+
+    public void setStampCount(int stampCount){ this.stampCount = this.stampCount; }
+    public int getStampCount(){ return stampCount;}
     public List<areaItem> getAreaList() {
         return arealist;
     }

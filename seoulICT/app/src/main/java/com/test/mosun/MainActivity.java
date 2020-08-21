@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private PermissionCheck permission;
     boolean isQuit = false;
     private LoginActivity loginActivity;
-
+    private static Activity mainActivity;
 
 
     @Override
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         backPressCloseHandler = new BackPressCloseHandler(this);
         setContentView(R.layout.activity_main);
-
+        mainActivity= this;
         //loginActivity.finish();
 
         //상태 바 색 바꿔줌
@@ -236,9 +236,25 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(item.getTourTitle(),Boolean.toString(item.isCollected()));
             editor.commit();
         }
+        editor.putString("stampCount",Integer.toString(AppManager.getInstance().getStampCount()));
+        editor.commit();
+        editor.putString("maskCount",Integer.toString(AppManager.getInstance().getMaskCount()));
+        editor.commit();
+        Log.i("모은","saveData(Main)-stampCount : "+AppManager.getInstance().getStampCount());
 
 
 
+
+    }
+    public void removeKey(String key) {
+
+        SharedPreferences prefs = getSharedPreferences("NPT", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor edit = prefs.edit();
+
+        edit.remove(key);
+
+        edit.commit();
 
     }
 
