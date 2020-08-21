@@ -3,12 +3,19 @@ package com.test.mosun.stamp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.test.mosun.MainActivity;
 import com.test.mosun.R;
+import com.test.mosun.home.Fragment_Home;
+import com.test.mosun.utility.OnSingleClickListener;
 
 //tour api 사용해서 코스 정보 띄우기 or description
 public class DetailPopUpActivity extends AppCompatActivity {
@@ -30,6 +37,17 @@ public class DetailPopUpActivity extends AppCompatActivity {
         String todayNumber = String.valueOf(secondIntent.getStringExtra("todayNumber"));
 
         Log.d("string", String.valueOf(secondIntent.getStringExtra("key")));
+
+
+        //뒤로가기 선택 시
+        ImageButton back_btn = (ImageButton)findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {  //뒤로가기 버튼 누르면 마이페이지(이전 페이지)로 돌아간다.
+
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         TextView title = findViewById(R.id.popupTitle);
         ImageView imageView = findViewById(R.id.popupImage);

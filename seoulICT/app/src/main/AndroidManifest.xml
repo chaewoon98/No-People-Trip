@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 카메라 -->
 
     <uses-feature android:name="android.hardware.camera.autofo
@@ -43,6 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- 액티비티 -->
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
@@ -55,8 +57,7 @@
         <activity
             android:name=".activity.CoursePopupActivity"
             android:theme="@style/PopUpTheme" />
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
         <activity android:name=".activity.CourseActivity" />
         <activity android:name=".activity.AreaActivity" />
         <activity android:name=".qrcode.QRNetworkActivity" />
@@ -65,10 +66,10 @@
         <activity android:name=".login.LoginActivity"/>
         <activity android:name=".camera.CameraActivity"/>
         <activity android:name=".network.NetworkActivity"/>
-        <!--        0811 추가-->
         <activity android:name=".qrcode.MaskPopupActivity"
             android:theme="@style/PopUpTheme" />
-
+        <activity android:name=".information.WithdrawalPopUpActivity"
+            android:theme="@style/PopUpTheme"/>
 
 
 

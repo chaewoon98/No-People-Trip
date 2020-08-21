@@ -1,6 +1,7 @@
 package com.test.mosun;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -91,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
         curveBottomBar = findViewById(R.id.customBottomBar);
         curveBottomBar.inflateMenu(R.menu.navigation);
         curveBottomBar.setOnNavigationItemSelectedListener(new ItemSelectedListener());
-
-
-
         permissionCheck();
     }
 
@@ -246,6 +244,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @SuppressLint("LongLogTag")
+    private void loadUserSnsData()
+    {
+        Log.i("모은 loadData(main_activity)","loadData");
+
+        ArrayList<TourList> list = AppManager.getInstance().getTourList();
+        SharedPreferences prefs = getSharedPreferences("NPT", Context.MODE_PRIVATE);
+
+        AppManager.getInstance().setStampCount(Integer.parseInt(prefs.getString("userSns", "")));
+        Log.i("모은","userSns(main) "+AppManager.getInstance().getuserSns());
+
+    }
+
     public void removeKey(String key) {
 
         SharedPreferences prefs = getSharedPreferences("NPT", Context.MODE_PRIVATE);

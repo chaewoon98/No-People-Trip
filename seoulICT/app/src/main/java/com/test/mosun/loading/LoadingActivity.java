@@ -279,6 +279,8 @@ public class LoadingActivity extends AppCompatActivity {
     private void checkData()
     {
         SharedPreferences prefs = getSharedPreferences("NPT", Context.MODE_PRIVATE);
+        AppManager.getInstance().setuserSns(prefs.getString("userSns", ""));
+        Log.i("모은","userSns(main) "+AppManager.getInstance().getuserSns());
         if(prefs.contains("경복궁"))
         {
 

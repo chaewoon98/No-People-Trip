@@ -131,18 +131,31 @@ public class LoginActivity extends Activity  {
         setContentView(R.layout.activity_login);
         setStatusBar();// 상태바 색상 설정
 
-        String getIntentData = getIntent().getStringExtra("logout");
-        Log.i("모은 ","getIntentData :"+getIntentData);
+        String getlogoutData = getIntent().getStringExtra("logout");
+        Log.i("모은 ","getlogoutData :"+ getlogoutData);
 
-        if(getIntentData!=null && getIntentData.equals("naver"))
+        if(getlogoutData!=null && getlogoutData.equals("naver"))
         {
             naverLogout();
         }
-        else if(getIntentData!=null && getIntentData.equals("kakao"))
+        else if(getlogoutData!=null && getlogoutData.equals("kakao"))
         {
             kakaoLogOut();
         }
 
+        String getwithdrawalData = getIntent().getStringExtra("withdrawal");
+        Log.i("모은 ","getwithdrawalData :"+ getwithdrawalData);
+
+        if(getwithdrawalData!=null && getwithdrawalData.equals("naver"))
+        {
+            Log.i("모은 ","DeleteTokenTask :"+ getwithdrawalData);
+
+            new DeleteTokenTask().execute();
+        }
+        else if(getwithdrawalData!=null && getwithdrawalData.equals("kakao"))
+        {
+            SessionClose();
+        }
 
 
             //카카오 로그인 데이터
@@ -490,7 +503,7 @@ public class LoginActivity extends Activity  {
                 AppManager.getInstance().setUserID(Integer.toString(result.getUserId()));
 
                 ExecutorService es = Executors.newSingleThreadExecutor();
-                es.submit(() -> onSaveLoginData());
+                es.submit(() -> onSaveLoginData(data.getUserSns()));
                 es.submit(() -> goToNextActivity());
                 es.shutdown();
 //                onSaveLoginData();
@@ -508,7 +521,7 @@ public class LoginActivity extends Activity  {
     }
 
 
-    private void onSaveLoginData()
+    private void onSaveLoginData(String userSns)
     {
         Log.i("모은","onSaveLoginData");
         SharedPreferences auto = getSharedPreferences("NPT",Activity.MODE_PRIVATE);
@@ -516,6 +529,10 @@ public class LoginActivity extends Activity  {
         SharedPreferences.Editor autoLogin = auto.edit();
         autoLogin.putString("user_id", AppManager.getInstance().getUserId());
         autoLogin.commit();
+        autoLogin.putString("userSns",userSns);
+        autoLogin.commit();
+        AppManager.getInstance().setuserSns(auto.getString("userSns", ""));
+        Log.i("모은","userSns(main) "+AppManager.getInstance().getuserSns());
     }
 
     public void goToNextActivity() {

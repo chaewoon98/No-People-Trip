@@ -29,6 +29,7 @@ class Classifier(assetManager: AssetManager) {
         val result = Array(BATCH_SIZE) { FloatArray(labels.size) }
 
         val unscaledBitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
+//        Log.i("모은 ",unscaledBitmap.toString())
         val bitmap =
             Bitmap.createScaledBitmap(unscaledBitmap, MODEL_INPUT_SIZE, MODEL_INPUT_SIZE, false)
 

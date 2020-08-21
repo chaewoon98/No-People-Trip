@@ -3,14 +3,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     buildToolsVersion "28.0.0"
 
 
     defaultConfig {
         applicationId "com.test.mosun"
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -103,7 +103,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //카메라뷰
-    implementation "com.priyankvasa.android:cameraview-ex:3.5.1-alpha"
+    implementation "com.priyankvasa.android:cameraview-ex:3.5.5-alpha"
 
     //뷰페이저 인디케이터
     implementation 'me.relex:circleindicator:1.2.2'

@@ -96,7 +96,7 @@
 
                 <com.test.mosun.utility.CustomEditText
                     android:id="@+id/search_edit_text"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:layout_marginBottom="10dp"

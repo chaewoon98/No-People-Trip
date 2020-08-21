@@ -19,7 +19,7 @@ public class AppManager {
     private ArrayList<LocationList> locationList;
     public int stampCount = 0; //스탬프 개수
     public int maskCount = 0; // 마스크 개수
-
+    private String userSns;
 
     private AppManager() {
     }
@@ -30,6 +30,8 @@ public class AppManager {
         return instance;
     }
 
+    public void setuserSns(String userSns){ this.userSns = userSns; }
+    public String getuserSns(){ return userSns;}
 
     public void setMaskCount(int maskCount){ this.maskCount = maskCount; }
     public int getMaskCount(){ return maskCount;}

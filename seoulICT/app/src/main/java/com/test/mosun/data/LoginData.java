@@ -45,4 +45,5 @@ public class LoginData {
     public String getUserId() {
         return userId;
     }
+    public String getUserSns() { return userSns;}
 }

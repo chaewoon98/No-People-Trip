@@ -6,32 +6,39 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="모은" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d03110f8-c2b5-479c-a6b6-380c0cc6778c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_5_0_alpha01_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_5_0_alpha01_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_priyankvasa_android_cameraview_ex_3_5_1_alpha_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/AppManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/AppManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/camera/CameraActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/camera/CameraActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/camera/Classifier.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/camera/Classifier.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/data/LoginData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/data/LoginData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/data/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/data/LoginResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/information/Fragment_Reward.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/information/Fragment_Reward.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/loading/LoadingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/loading/LoadingActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/login/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/login/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/map/Fragment_GoogleMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/map/Fragment_GoogleMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/map/Fragment_Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/activity/Fragment_Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/network/ServiceApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/network/ServiceApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/stamp/Fragment_Stamp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/stamp/Fragment_Stamp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_reward.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_reward.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/stamp/DetailPopUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/stamp/DetailPopUpActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/mosun/utility/PermissionCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/mosun/utility/PermissionCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_camera.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_camera.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_stamp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_stamp.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5_API_27" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="R39M3070F2F" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -40,7 +47,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -66,8 +78,8 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-08-19T13:39:17.369Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/layout" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cameraview-ex-master (1)/cameraview-ex-master/sampleAppJava" />
+    <property name="settings.editor.selected.configurable" value="preferences.language.Kotlin" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -174,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597942253541</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[update] mypage layout">
+      <created>1597990120338</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597990120338</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -182,7 +201,8 @@
     <MESSAGE value="[update] Fragment_Stamp layout" />
     <MESSAGE value="[update] CameraActivity - model percent checking" />
     <MESSAGE value="[update] back Button(stamp Navigation Bar)" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update] back Button(stamp Navigation Bar)" />
+    <MESSAGE value="[update] mypage layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] mypage layout" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596175890791">
@@ -206,43 +226,49 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="883" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1596117108225" />
-    <state x="611" y="21" width="707" height="803" key="CommitChangelistDialog2" timestamp="1597942249577">
+    <state x="611" y="21" width="707" height="803" key="CommitChangelistDialog2" timestamp="1597990112015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="611" y="21" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597990112015" />
     <state x="611" y="21" width="707" height="803" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1597942249577" />
-    <state x="769" y="170" key="FileChooserDialogImpl" timestamp="1597942520441">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="961" y="215" key="FileChooserDialogImpl" timestamp="1598005153541">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2881" y="215" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597735433772" />
     <state x="769" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1597942520441" />
-    <state x="961" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1596181229728" />
-    <state width="830" height="251" key="GridCell.Tab.0.bottom" timestamp="1597940162133">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="961" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598005153541" />
+    <state width="1877" height="246" key="GridCell.Tab.0.bottom" timestamp="1598010059784">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="143" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597742472200" />
     <state width="830" height="251" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597940162133" />
-    <state width="1877" height="288" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1596175864024" />
-    <state width="830" height="251" key="GridCell.Tab.0.center" timestamp="1597940162133">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598010059784" />
+    <state width="1877" height="246" key="GridCell.Tab.0.center" timestamp="1598010059784">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="143" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597742472200" />
     <state width="830" height="251" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597940162133" />
-    <state width="1877" height="288" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1596175864024" />
-    <state width="830" height="251" key="GridCell.Tab.0.left" timestamp="1597940162132">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="246" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598010059784" />
+    <state width="1877" height="246" key="GridCell.Tab.0.left" timestamp="1598010059784">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="143" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597742472200" />
     <state width="830" height="251" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597940162132" />
-    <state width="1877" height="288" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1596175864022" />
-    <state width="830" height="251" key="GridCell.Tab.0.right" timestamp="1597940162133">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="246" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598010059784" />
+    <state width="1877" height="246" key="GridCell.Tab.0.right" timestamp="1598010059784">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="143" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597742472200" />
     <state width="830" height="251" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597940162133" />
-    <state width="1877" height="288" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1596175864024" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597942454683">
+    <state width="1877" height="246" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598010059784" />
+    <state x="0" y="162" key="SettingsEditor" timestamp="1598000372504">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598000372504" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597990120457">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597990120457" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597942454683" />
   </component>
 </project>

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,9 @@ import com.test.mosun.MainActivity;
 import com.test.mosun.R;
 import com.test.mosun.login.LoginActivity;
 import com.test.mosun.qrcode.CreateQR;
+import com.test.mosun.stamp.TourList;
+
+import java.util.ArrayList;
 
 
 public class Fragment_Reward extends Fragment {
@@ -113,13 +117,14 @@ public class Fragment_Reward extends Fragment {
             public void onClick(View v) {
                 //sharedPreference 삭제
                 ((MainActivity)getActivity()).removeKey("user_id");
+                ((MainActivity)getActivity()).removeKey("userSns");
 
                 //서버에 데이터 저장
 
 
 
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.putExtra("logout","naver");
+                intent.putExtra("logout",AppManager.getInstance().getuserSns());
                 startActivity(intent);
             }
         });

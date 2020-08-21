@@ -5,8 +5,10 @@ package com.test.mosun.camera
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -24,7 +26,9 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
-
+        val view: View = window.decorView
+        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        window.statusBarColor = Color.parseColor("#add8e6")
         classifier = Classifier(assets)
 
         if (!canUseCamera()) {
@@ -47,19 +51,19 @@ class CameraActivity : AppCompatActivity() {
     private fun setupCamera() {
         camera.addPictureTakenListener {
             val recognitions = classifier.recognize(it.data)
-            Log.i("모은 ","cameraActivyt-recognition :"+recognitions[0].toString())
+            Log.i("모은 ", "cameraActivyt-recognition :" + recognitions[0].toString())
             var checkPercentString = recognitions[0].toString()
             var checkPercent = checkPercentString.split(": ")
-            Log.i("모은 checkPercent",checkPercentString)
-            Log.i("모은 checkPercent",checkPercent[1].substring(0,2))
+            Log.i("모은 checkPercent", checkPercentString)
+            Log.i("모은 checkPercent", checkPercent[1].substring(0, 2))
 
             if(recognitions[0].toString().startsWith("0"))
             {
                 var checkPercentString = recognitions[0].toString()
                 var checkPercent = checkPercentString.split(": ")
-                Log.i("모은 checkPercent",checkPercentString)
-                Log.i("모은 checkPercent",checkPercent[1].substring(0,2))
-                checkPercentString = checkPercent[1].substring(0,2)
+                Log.i("모은 checkPercent", checkPercentString)
+                Log.i("모은 checkPercent", checkPercent[1].substring(0, 2))
+                checkPercentString = checkPercent[1].substring(0, 2)
                 if(Integer.parseInt(checkPercentString)<60) {
                     Toast.makeText(this, "마스크를 제대로 착용 후 다시 사진을 찍어주세요", Toast.LENGTH_LONG).show()
                 }
@@ -125,7 +129,7 @@ class CameraActivity : AppCompatActivity() {
 
 
 
-                if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CAMERA))
+                if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA))
                 {
                     //최초 접속이 아니고, 사용자가 다시 보지 않기에 체크를 하지 않고, 거절만 누른 경우
 
