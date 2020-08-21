@@ -30,6 +30,7 @@ public class AppManager {
         return instance;
     }
 
+    ////
     public void setuserSns(String userSns){ this.userSns = userSns; }
     public String getuserSns(){ return userSns;}
 
