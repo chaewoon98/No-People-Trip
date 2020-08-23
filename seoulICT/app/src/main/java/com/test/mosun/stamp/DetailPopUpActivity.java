@@ -175,7 +175,7 @@ public class DetailPopUpActivity extends AppCompatActivity {
             setDistance(Double.valueOf(distance));
             description.setText("헌릉 설명");
             setPredictNumber(Double.valueOf(predictionNumber));
-        }else if(secondIntent.getStringExtra("key").equals("영희원")){
+        }else if(secondIntent.getStringExtra("key").equals("영휘원")){
             title.setText("영휘원");
             imageView.setImageResource(R.drawable.image_10);
             if(Double.valueOf(predictionNumber) > 0)
