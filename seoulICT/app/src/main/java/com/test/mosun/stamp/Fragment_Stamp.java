@@ -160,7 +160,7 @@ public class Fragment_Stamp extends Fragment {
                 if (i == EditorInfo.IME_ACTION_SEARCH ) {
                     inputMethodManager.hideSoftInputFromWindow(editTextFilter.getWindowToken(), 0);
                     editTextFilter.setShowSoftInputOnFocus(true);
-                    ((MainActivity)getActivity()).showCurveBottomBar();
+                    //((MainActivity)getActivity()).showCurveBottomBar();//이 부분은 다시 넣어야함
                 }
 
 
@@ -173,7 +173,7 @@ public class Fragment_Stamp extends Fragment {
             public void onClick(View v) {
 
                 Log.i("모은 ","네비게이션 클릭 이벤트");
-                ((MainActivity)getActivity()).hideCurveBottomBar();
+                //((MainActivity)getActivity()).hideCurveBottomBar();//이 부분은 다시 넣어야함
                 editTextFilter.setShowSoftInputOnFocus(true);
 
             }
@@ -248,7 +248,7 @@ public class Fragment_Stamp extends Fragment {
 
             ExecutorService es = Executors.newSingleThreadExecutor();
             es.submit(() ->  inputMethodManager.hideSoftInputFromWindow(editTextFilter.getWindowToken(), 0));
-            es.submit(() ->   ((MainActivity)getActivity()).showCurveBottomBar());
+            //es.submit(() ->   ((MainActivity)getActivity()).showCurveBottomBar());//이 부분은 다시 넣어야함
             es.submit(() ->  Log.i("모은 ","back button click  im"));
             es.shutdown();
             return;
