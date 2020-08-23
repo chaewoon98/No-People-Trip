@@ -32,17 +32,26 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.test.mosun.data.QRData;
+import com.test.mosun.data.QRResponse;
 import com.test.mosun.home.Fragment_Home;
 import com.test.mosun.information.Fragment_Reward;
 import com.test.mosun.login.LoginActivity;
 import com.test.mosun.map.Fragment_GoogleMap;
+import com.test.mosun.network.RetrofitClient;
+import com.test.mosun.network.ServiceApi;
 import com.test.mosun.qrcode.QRPopupActivity;
 import com.test.mosun.stamp.Fragment_Stamp;
+import com.test.mosun.stamp.StampAdapter;
 import com.test.mosun.stamp.TourList;
 import com.test.mosun.utility.CurveBottomBar;
 import com.test.mosun.utility.PermissionCheck;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -58,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     BackPressCloseHandler backPressCloseHandler;
     private PermissionCheck permission;
     boolean isQuit = false;
-    private LoginActivity loginActivity;
-    private static Activity mainActivity;
+
+    public static Activity mainActivity;
 
 
     @Override
@@ -76,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.parseColor("#FAFAFA"));
         setContentView(R.layout.activity_main);
         AppManager.getInstance().setMainActivity(this);
+
+
+
+
+
+
 
         // 초기 프래그먼트 설정
         fragment_Home = Fragment_Home.newInstance();
@@ -132,9 +147,14 @@ public class MainActivity extends AppCompatActivity {
         Log.i("모은 ","네비게이션 show");
 
         curveBottomBar.setVisibility(View.VISIBLE);
+        Log.i("모은 ","네비게이션 show");
+        floatingActionButton.show();
+        Log.i("모은 ","네비게이션 show");
+    }
+    public void showFloatingActionButton()
+    {
         floatingActionButton.show();
     }
-
 
 
     //사용자에게 권한요청 요구를 위한 다이어로그를 생성
@@ -321,6 +341,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_container, fragment).commit();  // Fragment로 사용할 MainActivity내의 layout공간을 선택합니다.
 
     }
+
 }
 
 class BackPressCloseHandler {

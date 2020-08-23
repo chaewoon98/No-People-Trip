@@ -17,6 +17,8 @@ import com.test.mosun.MainActivity;
 import com.test.mosun.R;
 import com.test.mosun.data.LoginData;
 import com.test.mosun.data.LoginResponse;
+import com.test.mosun.data.QRData;
+import com.test.mosun.data.QRResponse;
 import com.test.mosun.data.modelResponse;
 import com.test.mosun.home.areaItem;
 import com.test.mosun.login.LoginActivity;
@@ -43,9 +45,6 @@ import retrofit2.Response;
 
 
 public class LoadingActivity extends AppCompatActivity {
-    // 텐서 플로우 라이트에 넘겨주는 데이터
-    // 인공지능 정보 넣어줄 정보들
-    // 여기 다 넣어주세요
     private float avgTemp;
     private float minTemp;
     private float maxTemp;
@@ -88,31 +87,41 @@ public class LoadingActivity extends AppCompatActivity {
         //onclearData(); //데이터 지우기
         ExecutorService es = Executors.newSingleThreadExecutor();
         es.execute(this::getCoronaInfoData);
+
         es.execute(this::getWeatherInfoData);
         es.execute(new Runnable() {
             @Override
             public void run() {
-                if(confirmedCorona == -1)
-                {
+                if (confirmedCorona == -1) {
                     try {
-                        Thread.sleep(500);
-                        initTensorflow();
+                        Thread.sleep(1000);
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                }
-                else
-                {
+                    initTensorflow();
+                } else {
                     initTensorflow();
                 }
             }
         });
         es.execute(this::checkData);
-//        es.execute(this::getNetworkConnection);
+        es.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Thread.sleep(1000);
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                getQRNumData();
+
+            }
+        });
+        es.execute(this::getNetworkConnection);
         es.shutdown();
-//        initTensorflow();
-//        checkData();
-        getNetworkConnection(); //네트워크 연결 확인
 
 
     }
@@ -131,7 +140,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     /***** 기존 정보 가져오기 *****/
-       private void getLoginData() {
+    private void getLoginData() {
         SharedPreferences sp = getSharedPreferences("NPT", MODE_PRIVATE);
         String loginId = sp.getString("user_id", null);
 
@@ -168,7 +177,6 @@ public class LoadingActivity extends AppCompatActivity {
     /*** 데이터 베이스에서 가져와서 추가 + 로컬에 일단 저장해놓고 변동되면 수정 하게 만들기**/
 
 
-
     public void onSaveTourListData() {
         Log.i("onSaveTourListData", "onSaveTourListData");
 
@@ -180,18 +188,16 @@ public class LoadingActivity extends AppCompatActivity {
 
         listSeoul.add(new TourList("경복궁", "설명", 37.5792642, 126.9778535, kungbokgoungPridictionNumber, 0, R.drawable.kgoung, R.drawable.viewpager_icon2));
         listSeoul.add(new TourList("덕수궁", "설명", 37.5657008, 126.9740246, ducksugoungPridictionNumber, 0, R.drawable.dgoung, R.drawable.ic_ducksu));
-        listSeoul.add(new TourList("창경궁", "설명", 37.5787708, 126.9926811, changkunggoungPridictionNumber, 0, R.drawable.ckgoung, R.drawable.viewpager_icon2));
+        listSeoul.add(new TourList("창경궁", "설명", 37.5787708, 126.9926811, changkunggoungPridictionNumber, 0, R.drawable.image_03, R.drawable.viewpager_icon2));
         listSeoul.add(new TourList("창덕궁", "설명", 37.5808977, 126.9898217, changduckgoungPridictionNumber, 0, R.drawable.cdkoung, R.drawable.viewpager_icon2));
-        listSeoul.add(new TourList("선릉", "설명", 37.5029079, 127.0168782, sunrungPridictionNumber, 0, R.drawable.cdkoung, R.drawable.ic_neung));
-        listSeoul.add(new TourList("정릉", "설명", 37.4603954, 126.9269338, jeongrungPridictionNumber, 0, R.drawable.cdkoung, R.drawable.ic_neung));
-        listSeoul.add(new TourList("헌릉", "설명", 37.4604794, 127.0495097, hunrungPridictionNumber, 0, R.drawable.cdkoung, R.drawable.ic_neung));
-        listSeoul.add(new TourList("태릉", "설명", 37.6038265, 127.0225271, taerungPridictionNumber, 0, R.drawable.cdkoung, R.drawable.ic_neung));
-        listSeoul.add(new TourList("의릉", "설명", 37.6038317, 127.0553579, uirungPridictionNumber, 0, R.drawable.cdkoung, R.drawable.ic_neung));
-        listSeoul.add(new TourList("영휘원", "설명", 37.5885055, 127.0414405, younghwiwonPridictionNumber, 0, R.drawable.cdkoung, R.drawable.ic_neung));
+        listSeoul.add(new TourList("선릉", "설명", 37.5029079, 127.0168782, sunrungPridictionNumber, 0, R.drawable.image_05, R.drawable.ic_neung));
+        listSeoul.add(new TourList("정릉", "설명", 37.4603954, 126.9269338, jeongrungPridictionNumber, 0, R.drawable.image_06, R.drawable.ic_neung));
+        listSeoul.add(new TourList("헌릉", "설명", 37.4604794, 127.0495097, hunrungPridictionNumber, 0, R.drawable.image_07, R.drawable.ic_neung));
+        listSeoul.add(new TourList("태릉", "설명", 37.6038265, 127.0225271, taerungPridictionNumber, 0, R.drawable.image_08, R.drawable.ic_neung));
+        listSeoul.add(new TourList("의릉", "설명", 37.6038317, 127.0553579, uirungPridictionNumber, 0, R.drawable.image_09, R.drawable.ic_neung));
+        listSeoul.add(new TourList("영휘원", "설명", 37.5885055, 127.0414405, younghwiwonPridictionNumber, 0, R.drawable.image_10, R.drawable.ic_neung));
 
         Collections.sort(listSeoul, new SortListByPredictNumber());
-
-
         AppManager.getInstance().setTourList(listSeoul);
 
 
@@ -204,20 +210,15 @@ public class LoadingActivity extends AppCompatActivity {
         if (prefs.contains("경복궁")) {
 
             ExecutorService es = Executors.newSingleThreadExecutor();
-            es.submit(() -> onSaveTourListData());
-            es.submit(() -> loadData());
-//            es.submit(()->ccc());
+            es.submit(this::onSaveTourListData);
+            es.submit(this::loadData);
             es.shutdown();
-//            onSaveTourListData();
-//            loadData();
             Log.i("모은 checkData", "o");
         } else {
             ExecutorService es = Executors.newSingleThreadExecutor();
-            es.submit(() -> onSaveTourListData());
-            es.submit(() -> saveData());
+            es.submit(this::onSaveTourListData);
+            es.submit(this::saveData);
             es.shutdown();
-//            onSaveTourListData();
-//            saveData();
             Log.i("모은 checkData", "x");
 
         }
@@ -235,7 +236,7 @@ public class LoadingActivity extends AppCompatActivity {
             editor.putString(item.getTourTitle(), Boolean.toString(item.isCollected()));
         }
 
-        editor.commit();
+        editor.apply();
     }
 
     @SuppressLint("LongLogTag")
@@ -248,7 +249,7 @@ public class LoadingActivity extends AppCompatActivity {
         for (TourList item : list) {
             String isCollected = prefs.getString(item.getTourTitle(), "");
             Log.i("모은 loadData(loading)", isCollected);
-            item.setCollected(Boolean.valueOf(isCollected));
+            item.setCollected(Boolean.parseBoolean(isCollected));
 
         }
 
@@ -285,10 +286,10 @@ public class LoadingActivity extends AppCompatActivity {
             inputVal[2] = maxTemp;
             inputVal[3] = confirmedCorona;
 
-            Log.i("모은","inputVal[0] : "+inputVal[0]);
-            Log.i("모은","inputVal[1] : "+inputVal[1]);
-            Log.i("모은","inputVal[2] : "+inputVal[2]);
-            Log.i("모은","inputVal[3] : "+inputVal[3]);
+            Log.i("모은", "inputVal[0] : " + inputVal[0]);
+            Log.i("모은", "inputVal[1] : " + inputVal[1]);
+            Log.i("모은", "inputVal[2] : " + inputVal[2]);
+            Log.i("모은", "inputVal[3] : " + inputVal[3]);
 
             float[][] outputVal = new float[1][1];
             kungbokgoungInterpreter.run(inputVal, outputVal);
@@ -339,6 +340,46 @@ public class LoadingActivity extends AppCompatActivity {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
+    private void getQRNumData() {
+        //qr_num 가져오기
+        ArrayList<TourList> list = AppManager.getInstance().getTourList();
+        for (int i = 0; i < list.size(); i++) {
+            getQRNum(new QRData(list.get(i).getTourTitle()), i);
+
+        }
+    }
+
+    protected void getQRNum(QRData data, int i) {
+
+        final int[] qr_num = new int[1];
+        service.qrNum(data).enqueue(new Callback<QRResponse>() {
+            @Override
+            public void onResponse(Call<QRResponse> call, Response<QRResponse> response) {
+                QRResponse result = response.body();
+
+
+                Log.i("qr코드 num 값 가져옴(message)", result.getMessage());
+                Log.i("qr코드 num 값 가져옴(qr_num)", result.getQRNum());
+
+
+                qr_num[0] = Integer.parseInt(result.getQRNum());
+                AppManager.getInstance().getTourList().get(i).setTodayNumber(qr_num[0]);
+                Log.i("qr코드 (getTodayNumber)", Double.toString(AppManager.getInstance().getTourList().get(i).getTodayNumber()));
+
+
+            }
+
+
+            @Override
+            public void onFailure(Call<QRResponse> call, Throwable t) {
+                //Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                Log.e("qr_num 가져오기 에러 발생", t.getMessage());
+
+            }
+        });
+
+    }
+
     protected void startLogin(LoginData data) {
 
         service.getUserData(data).enqueue(new Callback<LoginResponse>() {
@@ -349,10 +390,6 @@ public class LoadingActivity extends AppCompatActivity {
 
                 Log.i("모은", "startLogin 들어옴 + " + result.getUserName());
                 AppManager.getInstance().setUserName(result.getUserName());
-
-//
-////                onSaveLoginData();
-////                goToNextActivity();
             }
 
 

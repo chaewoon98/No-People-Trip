@@ -25,7 +25,7 @@ import com.test.mosun.utility.OnSingleClickListener;
 
 public class WithdrawalPopUpActivity extends AppCompatActivity {
     Activity thisActivity = this;
-
+    MainActivity mainActivity = (MainActivity)MainActivity.mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +58,12 @@ public class WithdrawalPopUpActivity extends AppCompatActivity {
 
                 //연동 해제//앱 로그인 화면으로
                 finish();
+
                 Intent intent = new Intent(WithdrawalPopUpActivity.this, LoginActivity.class);
                 intent.putExtra("withdrawal","naver");
                 startActivity(intent);
+                mainActivity.finish();
+
 
                 //서버 기록은 15일 후에 삭제된다는 것을 공지
                 Toast.makeText(thisActivity, "사용자 기록은 15일 후에 자동으로 삭제됩니다.", Toast.LENGTH_SHORT).show();

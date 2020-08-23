@@ -117,10 +117,10 @@ public class Fragment_Stamp extends Fragment {
         }
 
         ArrayList<TourList> list = AppManager.getInstance().getTourList();
-        for(int i=0;i<list.size();i++) {
-            getQRNum(new QRData(list.get(i).getTourTitle()),i);
-
-        }
+//        for(int i=0;i<list.size();i++) {
+//            getQRNum(new QRData(list.get(i).getTourTitle()),i);
+//
+//        }
     }
 
     @Override
@@ -266,10 +266,6 @@ public class Fragment_Stamp extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-//            String qr_name = AppManager.getInstance().getTourList().get(i).getTourTitle();
-//            getQRNum(new QRData(qr_name),i);
-//
-//            Log.i("모은 qr_num", Double.toString(AppManager.getInstance().getTourList().get(i).getTodayNumber()));
 
             Object vo = (Object)adapterView.getAdapter().getItem(i);
             String tourTitle = null;
@@ -399,7 +395,8 @@ public class Fragment_Stamp extends Fragment {
                 qr_num[0] = Integer.parseInt(result.getQRNum());
                 AppManager.getInstance().getTourList().get(i).setTodayNumber(qr_num[0]);
                 Log.i("qr코드 (getTodayNumber)", Double.toString(AppManager.getInstance().getTourList().get(i).getTodayNumber() ));
-                stampAdapter.updateAdpater(AppManager.getInstance().getTourList());
+                stampAdapter.notifyDataSetChanged();
+                //stampAdapter.updateAdpater(AppManager.getInstance().getTourList());
 
 
             }

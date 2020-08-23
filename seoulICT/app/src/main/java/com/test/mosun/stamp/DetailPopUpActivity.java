@@ -271,11 +271,11 @@ public class DetailPopUpActivity extends AppCompatActivity {
     public void setPredictNumber(Double pridictionNumber){
 
         if(pridictionNumber >= 2000){
-                predictionNumberText.setText("");
-            } else if(pridictionNumber <2000 && pridictionNumber > 500)
-            {
-                predictionNumberText.setText("");
-            }
+            predictionNumberText.setText("");
+        } else if(pridictionNumber <2000 && pridictionNumber > 500)
+        {
+            predictionNumberText.setText("");
+        }
         else {
             predictionNumberText.setText("");
         }

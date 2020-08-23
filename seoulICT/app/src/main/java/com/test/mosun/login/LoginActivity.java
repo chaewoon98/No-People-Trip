@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -101,6 +102,9 @@ public class LoginActivity extends Activity  {
     Animation translateUp;
 
 
+    BackPressCloseHandler backPressCloseHandler;
+
+
     /**
      * startOAuthLoginActivity() 호출시 인자로 넘기거나, OAuthLoginButton 에 등록해주면 인증이 종료되는 걸 알 수 있다.
      */
@@ -129,7 +133,9 @@ public class LoginActivity extends Activity  {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        backPressCloseHandler = new BackPressCloseHandler(this);
         setContentView(R.layout.activity_login);
+
         setStatusBar();// 상태바 색상 설정
 
         String getlogoutData = getIntent().getStringExtra("logout");
@@ -171,12 +177,6 @@ public class LoginActivity extends Activity  {
             initData();
             initView();
 
-            // 인공지능 데이터 가져오기
-
-
-            //데이타 로딩 > 나중에 로딩 액티비티로 옮기기
-            //onSaveAreaData();
-            // onSaveTourListData();
 
             //애니메이션 설정
             setAnimation();
@@ -282,6 +282,11 @@ public class LoginActivity extends Activity  {
     }
 
     @Override
+    public void onBackPressed() {
+        backPressCloseHandler.onBackPressed();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         // 카카오톡|스토리 간편로그인 실행 결과를 받아서 SDK로 전달
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
@@ -371,14 +376,9 @@ public class LoginActivity extends Activity  {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-
-
                 case R.id.buttonOAuthLoginImg:
-
-
                    mOAuthLoginInstance.startOauthLoginActivity(LoginActivity.this, mOAuthLoginHandler);
                    Log.i("모은", " btnClickListener 네이버 로그인 버튼 누름");
-//                   new RequestApiTask().execute();
 
 
                     break;
@@ -405,9 +405,6 @@ public class LoginActivity extends Activity  {
             return null;
         }
 
-//        protected void onPostExecute(Void v) {
-//            updateView();
-//        }
     }
 
     private class RequestApiTask extends AsyncTask<Void, Void, String> {
@@ -541,6 +538,38 @@ public class LoginActivity extends Activity  {
         finish();
         Intent intent = new Intent(getApplicationContext(), HelpActivity.class);
         startActivity(intent);
+    }
+
+
+
+}
+class BackPressCloseHandler {
+    private long backKeyPressedTime = 0;
+    private Toast toast;
+    private Activity activity;
+
+    public BackPressCloseHandler(Activity context) {
+        this.activity = context;
+    }
+
+    public void onBackPressed() {
+
+        Log.i("모은 ","main 백 버튼");
+        //activity.finish();
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            activity.finish();
+            toast.cancel();
+        }
+    }
+
+    public void showGuide() {
+        toast = Toast.makeText(activity, "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 }

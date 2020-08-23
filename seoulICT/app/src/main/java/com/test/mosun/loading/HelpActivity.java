@@ -20,46 +20,7 @@ import com.test.mosun.loading.viewpager_help.Help_5;
 public class HelpActivity extends AppCompatActivity {
     FragmentPagerAdapter adapterViewPager;
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//    }
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_second_home, container, false);
-//
-////        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.a_main_tl);
-////        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-////
-////        setContentView(R.layout.activity_help);
-//
-//        ViewPager viewPager = (ViewPager)getActivity().findViewById(R.id.viewpager_help);
-//
-//
-//        viewPager.setAdapter(new ViewPagerAdapter2(getChildFragmentManager()));
-//
-//        return view;
-//    }
 
-//        @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-//        super.onCreate(savedInstanceState, persistentState);
-//
-//
-//        setContentView(R.layout.activity_help);
-//
-//        ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager_help);
-////        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-////        viewPager.setAdapter(adapterViewPager);
-//
-//        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-////        viewPager.setAdapter(new ViewPagerAdapter2(getChildFragmentManager()));
-//
-//
-//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,13 +28,9 @@ public class HelpActivity extends AppCompatActivity {
         Log.d("##", "helpActivity");
 
         setContentView(R.layout.activity_help);
-
         ViewPager viewPager = (ViewPager)findViewById(R.id.viewpager_help);
-//        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-//        viewPager.setAdapter(adapterViewPager);
-
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-//        viewPager.setAdapter(new ViewPagerAdapter2(getChildFragmentManager()));
+
     }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {

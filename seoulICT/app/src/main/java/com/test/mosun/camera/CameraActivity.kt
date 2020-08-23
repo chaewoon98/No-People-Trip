@@ -26,8 +26,8 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
-        val view: View = window.decorView
-        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+
+//        view.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
         window.statusBarColor = Color.parseColor("#add8e6")
         classifier = Classifier(assets)
 
@@ -59,8 +59,8 @@ class CameraActivity : AppCompatActivity() {
 
             if(recognitions[0].toString().startsWith("0"))
             {
-                var checkPercentString = recognitions[0].toString()
-                var checkPercent = checkPercentString.split(": ")
+                checkPercentString = recognitions[0].toString()
+                checkPercent = checkPercentString.split(": ")
                 Log.i("모은 checkPercent", checkPercentString)
                 Log.i("모은 checkPercent", checkPercent[1].substring(0, 2))
                 checkPercentString = checkPercent[1].substring(0, 2)
@@ -69,7 +69,7 @@ class CameraActivity : AppCompatActivity() {
                 }
                 else
                 {
-                    //50%가 넘으면
+                    //60%가 넘으면
                     if(AppManager.getInstance().maskCount==3)
                     {
 

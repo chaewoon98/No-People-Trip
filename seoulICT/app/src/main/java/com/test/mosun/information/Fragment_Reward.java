@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -123,9 +124,11 @@ public class Fragment_Reward extends Fragment {
 
 
 
+
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 intent.putExtra("logout",AppManager.getInstance().getuserSns());
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

@@ -1,4 +1,3 @@
-
 package com.test.mosun.stamp;
 
 import android.content.Context;
@@ -87,15 +86,7 @@ public class StampAdapter extends BaseAdapter{
             view = layoutInflater.inflate(layout, null);
 
         item = list.get(i);
-
-
-        //서버
-//        String qr_name = AppManager.getInstance().getTourList().get(i).getTourTitle();
-//        item.setTodayNumber(getQRNum(new QRData(qr_name)));
-
         Log.i("모은 todayNumber", Double.toString(item.getTodayNumber()));
-
-
 
         TextView distance = view.findViewById(R.id.distance); // 수정 0803
 
@@ -118,7 +109,7 @@ public class StampAdapter extends BaseAdapter{
         {
             pridictNumber.setText("예상 관광객 약 : " + predictNumber + "명");
         } else{
-            pridictNumber.setText("코로나 위험!!");
+            pridictNumber.setText("코로나 위험!! 오늘은 비추!!");
         }
 
         todayNumber.setText("현재 관광객 약 :" + numberToday + "명");
@@ -146,26 +137,6 @@ public class StampAdapter extends BaseAdapter{
 
 
         }
-        /*else if (predictionNumber >= 2000) {
-            layout.setBackground(ContextCompat.getDrawable(context,R.drawable.rectangle_bad));
-        } else if (predictionNumber < 2000 && predictionNumber > 500) {
-            layout.setBackground(ContextCompat.getDrawable(context,R.drawable.rectangle_soso));
-        } else {
-            layout.setBackground(ContextCompat.getDrawable(context,R.drawable.rectangle_good));
-        }*/
-
-//        TextView landmarkName = (TextView)view.findViewById(R.id.landmark_name);
-//        ((LinearLayout)view.findViewById(R.id.stamp_linear_layout)).setVisibility(View.GONE);
-//        if ( item.isCollected()) {
-//            landmarkName.setBackgroundColor(Color.parseColor("#DEDEDE"));
-//        }
-//        if (predictionNumber >= 2000) {
-//            landmarkName.setBackgroundColor(Color.parseColor("#c82f3d"));
-//        }else if (predictionNumber < 2000 && predictionNumber > 500) {
-//            landmarkName.setBackgroundColor(Color.parseColor("#f0e68c"));
-//        } else {
-//            landmarkName.setBackgroundColor(Color.parseColor("#67c9d2"));
-//        }
 
 
         //현재위치에서 관광지까지 거리 출력
@@ -188,11 +159,12 @@ public class StampAdapter extends BaseAdapter{
         Log.d("검색", String.valueOf(charText.length()));
 
         if (charText.length() == 0) {
-            list.addAll(AppManager.getInstance().getTourList());
+            list.clear();
+            list.addAll(arrayList);
+            Log.d("검색1", String.valueOf(AppManager.getInstance().getTourList()));
             filterPrediction();
-            Log.d("검색1", String.valueOf(charText.length()));
         }
-        else {
+        if (charText.length() != 0 ) {
             list.clear();
             Log.d("검색2", String.valueOf(charText.length()));
             for (TourList st : arrayList) {
@@ -201,6 +173,7 @@ public class StampAdapter extends BaseAdapter{
                     list.add(st);
                 }
             }
+
         }
 
         notifyDataSetChanged();
@@ -216,34 +189,6 @@ public class StampAdapter extends BaseAdapter{
         notifyDataSetChanged();
     }
 
-    protected void getQRNum(QRData data) {
 
-        final int[] qr_num = new int[1];
-        service.qrNum(data).enqueue(new Callback<QRResponse>() {
-            @Override
-            public void onResponse(Call<QRResponse> call, Response<QRResponse> response) {
-                QRResponse result = response.body();
-
-
-                Log.i("qr코드 num 값 가져옴",result.getMessage() );
-                Log.i("qr코드 num 값 가져옴",result.getQRNum() );
-
-                //Log.i("qr코드 확인",result.getQRName());
-
-                qr_num[0] = Integer.parseInt(result.getQRNum());
-                //스탬프를 오늘 찍었는지 확인
-
-            }
-
-
-            @Override
-            public void onFailure(Call<QRResponse> call, Throwable t) {
-                //Toast.makeText(LoginActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.e("qr_num 가져오기 에러 발생", t.getMessage());
-
-            }
-        });
-
-    }
 
 }
