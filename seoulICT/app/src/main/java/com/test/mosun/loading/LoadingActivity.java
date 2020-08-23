@@ -116,7 +116,11 @@ public class LoadingActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                getQRNumData();
+                try {
+                    getQRNumData();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -340,10 +344,11 @@ public class LoadingActivity extends AppCompatActivity {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
-    private void getQRNumData() {
+    private void getQRNumData() throws InterruptedException {
         //qr_num 가져오기
         ArrayList<TourList> list = AppManager.getInstance().getTourList();
         for (int i = 0; i < list.size(); i++) {
+            Thread.sleep(200);
             getQRNum(new QRData(list.get(i).getTourTitle()), i);
 
         }

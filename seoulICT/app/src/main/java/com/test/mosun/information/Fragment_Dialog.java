@@ -24,9 +24,9 @@ public class Fragment_Dialog extends DialogFragment {
         TextView maskDescription = view.findViewById(R.id.maskDescription);
         ImageView backButton = (ImageView) view.findViewById(R.id.maskPopupClose);
         String maskCountString = String.valueOf(AppManager.getInstance().maskCount);
-        String maskDescriptionString = String.valueOf(5-AppManager.getInstance().maskCount);
+        String maskDescriptionString = String.valueOf(3-AppManager.getInstance().maskCount);
         maskStamp.setText(maskCountString+"개 적립됨");
-        maskDescription.setText("보상까지 "+maskDescriptionString+"개 남음");
+        maskDescription.setText("오늘 받을 수 있는 스탬프 "+maskDescriptionString+"개 남음");
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -22,7 +22,9 @@ import com.test.mosun.stamp.TourList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -117,7 +119,10 @@ public class ScanQR extends AppCompatActivity {
                     AppManager.getInstance().stampCount++;
                     Log.d("qr_name",qr_name);
                     item.setCollected(true);
-                    Toast.makeText(getApplicationContext(), "스탬프를 찍었습니다", Toast.LENGTH_SHORT).show();
+                    String today = new SimpleDateFormat("MM월 dd일 HH시").format(new Date());
+
+                    item.setScanTime(today);
+                    Toast.makeText(getApplicationContext(), today+" "+qr_name+" 스탬프를 찍었습니다", Toast.LENGTH_SHORT).show();
 
                     //item.setImageNumericalValueID(R.drawable.area_0);
                     checkAndUploadQRNum(new QRData(qr_id));

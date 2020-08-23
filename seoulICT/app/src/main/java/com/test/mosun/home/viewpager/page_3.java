@@ -58,8 +58,14 @@ public class page_3 extends Fragment {
 
         imageView.setImageResource(predictionList.get(index).getIcon());
         titleText.setText(predictionList.get(index).getTourTitle());
-        congestionText.setText("예상: " + String.format("%.2f", predictionList.get(index).getPridictionNumber()) + "명 / " + "현재: " + String.format("%.2f",predictionList.get(0).getTodayNumber()) + "명");
-
+//        congestionText.setText("예상: " + String.format("%.2f", predictionList.get(index).getPridictionNumber()) + "명 / " + "현재: " + String.format("%.2f",predictionList.get(0).getTodayNumber()) + "명");
+        if(Double.valueOf(predictionList.get(index).getPridictionNumber())>0)
+        {
+            congestionText.setText("예상: " + String.format("%.2f", predictionList.get(index).getPridictionNumber()) + "명 / " + "현재: " + String.format("%.2f",predictionList.get(0).getTodayNumber()) + "명");
+        }
+        else{
+            congestionText.setText("코로나 위험!! 오늘은 비추!!");
+        }
         return linearLayout;
     }
 

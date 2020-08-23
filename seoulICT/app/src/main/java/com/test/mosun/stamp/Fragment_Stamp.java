@@ -116,7 +116,7 @@ public class Fragment_Stamp extends Fragment {
             item.setDistance(distance);
         }
 
-        ArrayList<TourList> list = AppManager.getInstance().getTourList();
+//        ArrayList<TourList> list = AppManager.getInstance().getTourList();
 //        for(int i=0;i<list.size();i++) {
 //            getQRNum(new QRData(list.get(i).getTourTitle()),i);
 //
@@ -227,7 +227,13 @@ public class Fragment_Stamp extends Fragment {
         //qr_num 가져오기
         ArrayList<TourList> list = AppManager.getInstance().getTourList();
         for(int i=0;i<list.size();i++) {
-            getQRNum(new QRData(list.get(i).getTourTitle()),i);
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+            if(list.get(i).isCollected())
+                getQRNum(new QRData(list.get(i).getTourTitle()),i);
 
         }
         return view;

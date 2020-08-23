@@ -34,5 +34,6 @@ public class MyStampGridItem extends LinearLayout {
     public void setData(TourList tourList){
         tour_title.setText(tourList.getTourTitle());
         thumb_image.setImageResource(tourList.getImageNumericalValueID());
+        scan_time.setText(tourList.getScanTime());
     }
 }
