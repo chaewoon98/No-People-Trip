@@ -50,7 +50,8 @@ public class Congestion {
 
 
     public String congestDgoung(float predictNumber){
-        if(predictNumber >= 630){
+
+        if(predictNumber >= 630 && predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 315) {
             return "yellow";
@@ -61,7 +62,7 @@ public class Congestion {
 
     public String congestCDgoung(float predictNumber){
 
-        if(predictNumber >= 5509){
+        if(predictNumber >= 5509 && predictNumber <= 0 ){
             return "red";
         } else if(predictNumber >= 2754) {
             return "yellow";
@@ -71,7 +72,7 @@ public class Congestion {
     }
 
     public String congestCKgoung(float predictNumber){
-        if(predictNumber >= 2181){
+        if(predictNumber >= 2181 && predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 1090) {
             return "yellow";
@@ -81,7 +82,7 @@ public class Congestion {
     }
 
     public String congestTaerung(float predictNumber){
-        if(predictNumber >= 16390){
+        if(predictNumber >= 16390 && predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 8190) {
             return "yellow";
@@ -91,7 +92,7 @@ public class Congestion {
     }
 
     public String congestSunrung(float predictNumber){
-        if(predictNumber >= 1988){
+        if(predictNumber >= 1988 && predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 994) {
             return "yellow";
@@ -101,7 +102,7 @@ public class Congestion {
     }
 
     public String congestJungrung(float predictNumber){
-        if(predictNumber >= 2995){
+        if(predictNumber >= 2995&& predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 1497) {
             return "yellow";
@@ -111,7 +112,7 @@ public class Congestion {
     }
 
     public String congestHunrung(float predictNumber){
-        if(predictNumber >= 11930){
+        if(predictNumber >= 11930&& predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 5965) {
             return "yellow";
@@ -121,7 +122,7 @@ public class Congestion {
     }
 
     public String congestUwirung(float predictNumber){
-        if(predictNumber >= 4386){
+        if(predictNumber >= 4386&& predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 2193) {
             return "yellow";
@@ -131,7 +132,7 @@ public class Congestion {
     }
 
     public String congestYoungHuiwon(float predictNumber){
-        if(predictNumber >= 550){
+        if(predictNumber >= 550&& predictNumber <= 0){
             return "red";
         } else if(predictNumber >= 275) {
             return "yellow";
