@@ -113,7 +113,14 @@ public class StampAdapter extends BaseAdapter{
 
         pn = item.getTodayNumber();
         String numberToday = String.format("%.2f", pn);
-        pridictNumber.setText("예상 관광객 약 : " + predictNumber + "명");
+
+        if(Double.valueOf(predictNumber) > 0)
+        {
+            pridictNumber.setText("예상 관광객 약 : " + predictNumber + "명");
+        } else{
+            pridictNumber.setText("코로나 위험!!");
+        }
+
         todayNumber.setText("현재 관광객 약 :" + numberToday + "명");
         landmarkNameView.setText(item.getTourTitle());
         //distance.setText("관광지까지의 거리 :"+String.valueOf(item.getDistance())); // 수정 0803
