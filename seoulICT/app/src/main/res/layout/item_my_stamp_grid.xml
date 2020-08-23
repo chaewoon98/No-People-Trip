@@ -15,10 +15,18 @@
         android:id="@+id/thumb_image"/>
 
     <TextView
+        android:id="@+id/tour_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/tour_title"/>
+        android:text="영휘원" />
+
+    <TextView
+        android:id="@+id/scan_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="시간" />
 
 
 </LinearLayout>

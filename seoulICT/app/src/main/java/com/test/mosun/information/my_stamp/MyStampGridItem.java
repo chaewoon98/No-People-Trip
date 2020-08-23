@@ -15,6 +15,8 @@ public class MyStampGridItem extends LinearLayout {
     ImageView thumb_image;
     TextView tour_title;
     GridView gridView;
+    TextView scan_time;
+
 
     public MyStampGridItem(Context context) {
 
@@ -26,6 +28,7 @@ public class MyStampGridItem extends LinearLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.item_my_stamp_grid, this);
         tour_title = (TextView)findViewById(R.id.tour_title);
         thumb_image = (ImageView)findViewById(R.id.thumb_image);
+        scan_time = (TextView)findViewById(R.id.scan_time);
     }
 
     public void setData(TourList tourList){

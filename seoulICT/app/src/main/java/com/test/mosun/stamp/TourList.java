@@ -24,6 +24,7 @@ public class TourList {
 
     private boolean isCollected = false;//스탬프 여부
     private boolean isClick = true;
+    private String scan_time = "";
 
     // 기본 생성자 초기화
     public TourList(){
@@ -38,6 +39,7 @@ public class TourList {
         todayNumber = 0;
         imageNumericalValueID = 0;
         icon = 0;
+        scan_time="";
     }
 
     public TourList(String tourTitle, String tourDescription, double latitude, double longitude, float pridictionNumber,float todayNumber, int image, int icon)
@@ -58,6 +60,7 @@ public class TourList {
         locationB.setLatitude(latitude);
         locationB.setLongitude(longitude);
         distance = 0.0;
+        scan_time="";
     }
 
     public boolean isCollected() {
@@ -80,6 +83,12 @@ public class TourList {
         locationB.setLongitude(longitude);
     }
 
+
+    public void setScanTime(String scan_time)
+    {
+        this.scan_time = scan_time;
+    }
+    public String getScanTime(){ return scan_time;}
     public Location getLocationB(){
         return locationB;
     }
@@ -129,18 +138,6 @@ public class TourList {
 
     public double getLongitude() { return longitude; }
 
-    public int  setImage(){
-        if(isCollected)
-            return R.drawable.area_0;
-        if(pridictionNumber >= 2000){
-            return R.drawable.red;
-        } else if(pridictionNumber <2000 && pridictionNumber > 500)
-        {
-            return R.drawable.yellow;
-        }
-        return R.drawable.blue;
-
-    }
 
     public int getIcon(){
         return this.icon;
