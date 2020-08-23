@@ -153,15 +153,7 @@ public class DetailPopUpActivity extends AppCompatActivity {
             setDistance(Double.valueOf(distance));
             description.setText("창경궁 설명");
             setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("남산골한옥마을")){
-            title.setText("남산골한옥마을");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("남산골한옥마을 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("선릉")){
+        }  else if(secondIntent.getStringExtra("key").equals("선릉")){
             title.setText("선릉");
             imageView.setImageResource(R.drawable.kgoung);
             exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
@@ -202,119 +194,15 @@ public class DetailPopUpActivity extends AppCompatActivity {
             description.setText("헌릉 설명");
             setPredictNumber(Double.valueOf(predictionNumber));
         }else if(secondIntent.getStringExtra("key").equals("영희원")){
-            title.setText("영희원");
+            title.setText("영휘원");
             imageView.setImageResource(R.drawable.kgoung);
             exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
             today.setText("오늘 약"+todayNumber+"명 다녀감");
             setDistance(Double.valueOf(distance));
-            description.setText("영희원 설명");
+            description.setText("영휘원 설명");
             setPredictNumber(Double.valueOf(predictionNumber));
         }
-        else if(secondIntent.getStringExtra("key").equals("경기전")){
-            title.setText("경기전");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("경기전 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("국립전주박물관")){
-            title.setText("국립전주박물관");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("국립전주박물관 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("스파라쿠아")){
-            title.setText("스파라쿠아");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("스파라쿠아 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("전주 동물원")){
-            title.setText("전주 동물원");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("전주 동물원 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("한벽문화관")){
-            title.setText("한벽문화관");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("한벽문화관 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("한옥레일바이크")){
-            title.setText("한옥레일바이크");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            setPredictNumber(Double.valueOf(predictionNumber));
-            description.setText("한옥레일바이크 설명");
-        } else if(secondIntent.getStringExtra("key").equals("한국도로공사수목원")){
-            title.setText("한국도로공사수목원");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            setPredictNumber(Double.valueOf(predictionNumber));
-            description.setText("한국도로공사수목원 설명");
-        } else if(secondIntent.getStringExtra("key").equals("강천산")){
-            title.setText("강천산");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            setPredictNumber(Double.valueOf(predictionNumber));
-            description.setText("강천산 설명");
-        } else if(secondIntent.getStringExtra("key").equals("황토열매마을")){
-            title.setText("황토열매마을");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            setPredictNumber(Double.valueOf(predictionNumber));
-            description.setText("황토열매마을 설명");
-        } else if(secondIntent.getStringExtra("key").equals("고추장익는마을")){
-            title.setText("고추장익는마을");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("고추장익는마을 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("장류체험관")){
-            title.setText("장류체험관");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("장류체험관 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("산림박물관")){
-            title.setText("산림박물관");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수" + predictionNumber+"명");
-            today.setText("오늘 약 "+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("산림박물관 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        } else if(secondIntent.getStringExtra("key").equals("발효소스토굴")){
-            title.setText("발효소스토굴");
-            imageView.setImageResource(R.drawable.kgoung);
-            exception.setText("오늘 예상 총 사람 수 " + predictionNumber+"명");
-            today.setText("오늘 약"+todayNumber+"명 다녀감");
-            setDistance(Double.valueOf(distance));
-            description.setText("발효소스토굴 설명");
-            setPredictNumber(Double.valueOf(predictionNumber));
-        }
+
 
     }
 
