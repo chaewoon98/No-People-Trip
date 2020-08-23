@@ -186,11 +186,13 @@ public class StampAdapter extends BaseAdapter{
         charText = charText.toLowerCase(Locale.getDefault());
         Log.d("박태순","들어옴");
         Log.d("검색", String.valueOf(charText.length()));
+
         if (charText.length() == 0) {
             list.addAll(AppManager.getInstance().getTourList());
             filterPrediction();
             Log.d("검색1", String.valueOf(charText.length()));
-        } else {
+        }
+        else {
             list.clear();
             Log.d("검색2", String.valueOf(charText.length()));
             for (TourList st : arrayList) {
