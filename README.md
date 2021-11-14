@@ -68,7 +68,7 @@
 
 ## 4. 마이페이지
 
-마스크 착용에 따른 보상을 얻을 수 있는 레벨 시스탬 기능.
+마스크 착용에 따른 보상을 얻을 수 있는 레벨 시스템 기능.
 
 ## 🎞️ Service UI
 
@@ -84,6 +84,7 @@
 
 ## 💭 I Learned
 
-- [팀전체] UI/UX설계
-- [개인] Google Map API 연동
-- [개인] Main, 마이페이지 front-end
+- 전반적인 UI/UX설계
+- Google Map API 연동 및 지도 기능
+- 사용자 위치 기반 거리 측정 기능
+- Main, 마이페이지 front-end
