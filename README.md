@@ -85,7 +85,5 @@
 ## 💭 I Learned
 
 - [팀전체] UI/UX설계
-- [개인] Node.js와 Express를 통한 서버 구축
-- [개인] AWS의 RDS와 EC2를 통한 클라우드 서버 연결
-- [개인] 구글 티처블 머신을 사용한 마스크 디텍션 기능 구현
-- [개인] Main, Stamp 메뉴 front-end
+- [개인] Google Map API 연동
+- [개인] Main, 마이페이지 front-end
